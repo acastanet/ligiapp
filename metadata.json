@@ -1,0 +1,6 @@
+{
+  "name": "Studio Papier Découpé HTML/CSS",
+  "description": "Système de design et composition interactive en papier découpé pur HTML, CSS et SVG avec textures fibres, ombres portées diorama et palette stricte.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
