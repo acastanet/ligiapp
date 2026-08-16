@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - style-v2.html
-      - style-v2.css
+      - style-v2-refined.html
+      - style-v2-refined.css
       - .github/workflows/style-v2-pages.yml
   workflow_dispatch:
 
@@ -33,8 +33,8 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp style-v2.html _site/index.html
-          cp style-v2.css _site/style-v2.css
+          cp style-v2-refined.html _site/index.html
+          cp style-v2-refined.css _site/style-v2-refined.css
           touch _site/.nojekyll
 
       - name: Configure GitHub Pages
