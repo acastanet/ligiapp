@@ -98,7 +98,7 @@ export default function App() {
 
       {/* Main Content Area on Pure White Background */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 relative z-10">
-        
+
         {/* Hero Presentation Header - Borderless White Frame with Rounded Corners and Accentuated Shadows */}
         <section className="relative z-10 bg-[#FFFFFF] p-8 sm:p-12 rounded-3xl paper-elevation-2 space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#1A1A1A]/10">
