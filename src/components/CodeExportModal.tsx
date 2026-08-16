@@ -140,19 +140,19 @@ ${htmlSnippet}
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-[#FFFFFF] w-full max-w-4xl max-h-[90vh] rounded-3xl paper-elevation-3 flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-[#FFFFFF] w-full max-w-4xl max-h-[90vh] rounded-2xl border border-[#1A1A1A]/15 paper-elevation-5 flex flex-col overflow-hidden">
         {/* Header */}
         <div className="p-6 border-b border-[#1A1A1A]/10 flex items-center justify-between bg-[#FFFFFF]">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#0047AB] text-white flex items-center justify-center paper-elevation-1">
-              <Code2 className="w-5 h-5 text-[#FFD600]" />
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-[#0047AB] text-white flex items-center justify-center paper-elevation-1">
+              <Code2 className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-[#1A1A1A] text-lg font-serif-display">
+              <h3 className="font-bold text-[#1A1A1A] text-base">
                 Code Source HTML/CSS Exportable
               </h3>
-              <p className="text-xs text-[#1A1A1A]/60 font-medium">
+              <p className="text-xs text-[#1A1A1A]/60">
                 Prêt à l'emploi • Zéro dépendance externe • Texture & ombrages inclus
               </p>
             </div>
@@ -160,27 +160,27 @@ ${htmlSnippet}
 
           <button
             onClick={onClose}
-            className="p-2.5 rounded-xl text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-black/5 transition-all"
+            className="p-2 rounded-lg text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-[#F4F4F0] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Selection */}
-        <div className="px-6 pt-3 flex flex-wrap items-center justify-between gap-3 border-b border-[#1A1A1A]/10 bg-[#FFFFFF]">
-          <div className="flex gap-1.5 p-1 rounded-2xl bg-[#FFFFFF] paper-elevation-1 mb-2">
+        <div className="px-6 pt-4 flex items-center justify-between border-b border-[#1A1A1A]/10 bg-[#F4F4F0]/50">
+          <div className="flex gap-2">
             {[
               { id: 'full', label: 'Document Complet (HTML+CSS)' },
-              { id: 'css', label: 'Styles CSS' },
+              { id: 'css', label: 'Styles CSS Uniquement' },
               { id: 'html', label: 'Structure HTML' },
             ].map((t) => (
               <button
                 key={t.id}
                 onClick={() => setTab(t.id as any)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                className={`px-4 py-2 text-xs font-bold rounded-t-lg transition-all ${
                   tab === t.id
-                    ? 'bg-[#0047AB] text-white paper-elevation-1'
-                    : 'text-[#1A1A1A]/70 hover:text-[#1A1A1A]'
+                    ? 'bg-[#FFFFFF] text-[#0047AB] border-t-2 border-l border-r border-[#0047AB]/20 shadow-sm'
+                    : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'
                 }`}
               >
                 {t.label}
@@ -190,16 +190,16 @@ ${htmlSnippet}
 
           <button
             onClick={handleCopy}
-            className="mb-2 bg-[#0047AB] text-white px-4 py-2 rounded-2xl text-xs font-bold uppercase tracking-wider paper-btn hover:bg-[#003888] flex items-center gap-1.5 transition-all"
+            className="mb-2 paper-btn px-4 py-1.5 rounded-lg bg-[#FFFFFF] border-2 border-[#0047AB] text-[#0047AB] text-xs font-bold flex items-center gap-1.5"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-[#FFD600]" />
-                <span className="text-[#FFD600]">Copié dans le presse-papier !</span>
+                <Check className="w-3.5 h-3.5 text-[#06A77D]" />
+                <span className="text-[#06A77D]">Copié dans le presse-papier !</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-[#FFD600]" />
+                <Copy className="w-3.5 h-3.5" />
                 <span>Copier le Code</span>
               </>
             )}
@@ -207,19 +207,19 @@ ${htmlSnippet}
         </div>
 
         {/* Code View Area */}
-        <div className="flex-1 p-6 overflow-y-auto bg-[#1A1A1A] text-[#F8F9FA] font-mono text-xs leading-relaxed selection:bg-[#0047AB] selection:text-white">
+        <div className="flex-1 p-6 overflow-y-auto bg-[#1A1A1A] text-slate-200 font-mono text-xs leading-relaxed selection:bg-[#FFD600] selection:text-black">
           <pre className="whitespace-pre-wrap">{currentCode}</pre>
         </div>
 
         {/* Footer info */}
-        <div className="p-4 border-t border-[#1A1A1A]/10 bg-[#FFFFFF] flex items-center justify-between text-xs text-[#1A1A1A]/75 font-medium">
+        <div className="p-4 border-t border-[#1A1A1A]/10 bg-[#FFFFFF] flex items-center justify-between text-xs text-[#1A1A1A]/70">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#06A77D]" />
-            <span>Format 16:9 • Grille modulaire • Conforme palette primaire</span>
+            <span className="w-2 h-2 rounded-full bg-[#06A77D]" />
+            <span>Format 16:9 • Grille modulaire 180px • Conforme palette stricte</span>
           </div>
           <button
             onClick={onClose}
-            className="px-5 py-2 bg-[#0047AB] text-white font-bold text-xs uppercase tracking-wider rounded-2xl paper-btn hover:bg-[#003888] transition-all"
+            className="px-4 py-1.5 rounded-lg bg-[#F4F4F0] text-[#1A1A1A] font-bold text-xs hover:bg-[#E5E5E0]"
           >
             Fermer
           </button>

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { DioramaComposition, PaperLayer, PaperColor, ElevationLevel } from '../types';
 import { PAPER_PALETTE_GUIDE } from '../data/dioramas';
-import { Layers, Plus, Trash2, Sliders, Palette, Eye, ArrowUp, ArrowDown, Code2, Sparkles, RotateCcw } from 'lucide-react';
+import { Layers, Plus, Trash2, Sliders, Palette, Eye, ArrowUp, ArrowDown, Code2, Sparkles } from 'lucide-react';
 
 interface PaperStudioProps {
   composition: DioramaComposition;
   selectedLayerId: string | null;
   onSelectLayer: (layerId: string | null) => void;
   onUpdateComposition: (updated: DioramaComposition) => void;
-  onResetComposition?: () => void;
 }
 
 export const PaperStudio: React.FC<PaperStudioProps> = ({
@@ -16,7 +15,6 @@ export const PaperStudio: React.FC<PaperStudioProps> = ({
   selectedLayerId,
   onSelectLayer,
   onUpdateComposition,
-  onResetComposition,
 }) => {
   const selectedLayer = composition.layers.find((l) => l.id === selectedLayerId);
 
@@ -68,71 +66,59 @@ export const PaperStudio: React.FC<PaperStudioProps> = ({
   };
 
   return (
-    <div className="bg-[#FFFFFF] p-6 sm:p-8 rounded-3xl paper-elevation-2 space-y-6">
+    <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#1A1A1A]/10 paper-elevation-2 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[#1A1A1A]/10">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-2xl bg-[#06A77D] text-white flex items-center justify-center paper-elevation-1">
-            <Sliders className="w-4 h-4 text-white" />
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-[#06A77D] text-white flex items-center justify-center paper-elevation-1">
+            <Sliders className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="font-bold text-[#1A1A1A] text-base font-serif-display">
-              Atelier des Calques Papier
+            <h3 className="font-bold text-[#1A1A1A] text-sm sm:text-base">
+              Atelier & Gestion des Calques Papier
             </h3>
             <p className="text-xs text-[#1A1A1A]/60 font-medium">
-              Ajustement des élévations et palette
+              Ajustement des élévations et palette stricte
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          {onResetComposition && (
-            <button
-              onClick={onResetComposition}
-              className="p-2 rounded-2xl bg-[#FFFFFF] text-[#1A1A1A]/70 hover:text-[#E63946] paper-elevation-1 hover:paper-elevation-2 transition-all"
-              title="Restaurer la composition originale d'usine"
-            >
-              <RotateCcw className="w-4 h-4" />
-            </button>
-          )}
-
-          <button
-            onClick={handleAddLayer}
-            className="bg-[#0047AB] text-white px-3.5 py-2 rounded-2xl text-xs font-bold uppercase tracking-wider paper-btn hover:bg-[#003888] transition-all flex items-center gap-1.5"
-          >
-            <Plus className="w-3.5 h-3.5 text-[#FFD600]" />
-            <span>Ajouter</span>
-          </button>
-        </div>
+        <button
+          onClick={handleAddLayer}
+          className="paper-btn px-3 py-1.5 rounded-lg bg-[#FFFFFF] border-2 border-[#06A77D] text-[#06A77D] text-xs font-bold flex items-center gap-1.5"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          <span>Ajouter Forme</span>
+        </button>
       </div>
 
       {/* Layer Stack Inspector */}
       <div className="space-y-2">
-        <span className="text-xs font-bold text-[#1A1A1A] uppercase tracking-wider block">
-          Stratification des Feuilles :
+        <span className="text-xs font-bold text-[#1A1A1A] block">
+          Stratification des Feuilles (De l'arrière-plan vers le premier plan) :
         </span>
-        <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
-          {composition.layers.map((layer) => (
+        <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+          {composition.layers.map((layer, idx) => (
             <div
               key={layer.id}
               onClick={() => onSelectLayer(layer.id)}
-              className={`p-3 rounded-2xl transition-all cursor-pointer flex items-center justify-between ${
+              className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                 selectedLayerId === layer.id
-                  ? 'bg-[#0047AB] text-white paper-elevation-2'
-                  : 'bg-[#FFFFFF] text-[#1A1A1A] paper-elevation-1 hover:paper-elevation-2'
+                  ? 'border-[#0047AB] bg-[#0047AB]/5 paper-elevation-1'
+                  : 'border-[#1A1A1A]/10 bg-white hover:bg-[#F4F4F0]'
               }`}
             >
               <div className="flex items-center gap-2.5">
                 <span
-                  className="w-4 h-4 rounded-full border border-black/20 flex-shrink-0"
+                  className="w-4 h-4 rounded-md border border-black/10 flex-shrink-0"
                   style={{ backgroundColor: layer.color }}
                 />
                 <div>
-                  <span className="text-xs font-bold line-clamp-1">
+                  <span className="text-xs font-bold text-[#1A1A1A] line-clamp-1">
                     {layer.name}
                   </span>
-                  <span className={`text-[10px] font-mono ${selectedLayerId === layer.id ? 'text-white/80' : 'text-[#1A1A1A]/60'}`}>
-                    Élévation {layer.elevation} • Z {layer.zIndex}
+                  <span className="text-[10px] text-[#1A1A1A]/60 font-mono">
+                    Élévation {layer.elevation} • Z-Index {layer.zIndex}
                   </span>
                 </div>
               </div>
@@ -144,7 +130,7 @@ export const PaperStudio: React.FC<PaperStudioProps> = ({
                       e.stopPropagation();
                       handleDeleteLayer(layer.id);
                     }}
-                    className={`p-1.5 rounded-lg ${selectedLayerId === layer.id ? 'text-[#FFD600] hover:bg-white/10' : 'text-red-500 hover:bg-red-50'}`}
+                    className="p-1 rounded text-red-500 hover:bg-red-50"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
@@ -157,21 +143,21 @@ export const PaperStudio: React.FC<PaperStudioProps> = ({
 
       {/* Selected Layer Properties Editor */}
       {selectedLayer ? (
-        <div className="p-5 bg-[#FFFFFF] rounded-2xl paper-elevation-2 space-y-4 animate-fadeIn">
+        <div className="p-4 rounded-xl bg-[#F4F4F0] border border-[#1A1A1A]/10 space-y-4 animate-fadeIn">
           <div className="flex items-center justify-between pb-2 border-b border-[#1A1A1A]/10">
-            <span className="text-xs font-bold text-[#1A1A1A] font-serif-display">
-              Propriétés : {selectedLayer.name}
+            <span className="text-xs font-bold text-[#1A1A1A]">
+              Propriétés de la Découpe : {selectedLayer.name}
             </span>
-            <span className="text-[10px] font-mono bg-[#FFFFFF] px-2.5 py-1 rounded-full paper-elevation-1 text-[#0047AB] font-bold">
+            <span className="text-[10px] font-mono bg-white px-2 py-0.5 rounded border border-[#1A1A1A]/10">
               ID: {selectedLayer.id}
             </span>
           </div>
 
           {/* Elevation Level Slider */}
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs font-bold text-[#1A1A1A]">
-              <span>Élévation (Relief 1 à 5)</span>
-              <span className="font-mono text-[#0047AB] font-bold">Niveau {selectedLayer.elevation}</span>
+            <div className="flex justify-between text-xs font-semibold text-[#1A1A1A]">
+              <span>Élévation (Niveau de relief 1 à 5)</span>
+              <span className="font-mono text-[#0047AB]">Niveau {selectedLayer.elevation}</span>
             </div>
             <input
               type="range"
@@ -186,30 +172,33 @@ export const PaperStudio: React.FC<PaperStudioProps> = ({
               }
               className="w-full accent-[#0047AB] cursor-pointer"
             />
+            <p className="text-[10px] text-[#1A1A1A]/60">
+              L'élévation détermine le rayon de flou (20-40px) et le décalage de l'ombre portée.
+            </p>
           </div>
 
           {/* Strict Color Palette Selector */}
           {selectedLayer.type !== 'base-white' && (
             <div className="space-y-2">
-              <span className="text-xs font-bold text-[#1A1A1A] uppercase tracking-wider block">
-                Teinte du Papier (Palette Primaire) :
+              <span className="text-xs font-semibold text-[#1A1A1A] block">
+                Teinte dans la Masse (Palette Stricte) :
               </span>
               <div className="grid grid-cols-6 gap-2">
-                {PAPER_PALETTE_GUIDE.filter(c => c.hex !== '#1A1A1A' && c.hex !== '#2d3e40').map((c) => (
+                {PAPER_PALETTE_GUIDE.filter(c => c.hex !== '#1A1A1A').map((c) => (
                   <button
                     key={c.hex}
                     onClick={() => handleUpdateLayer(selectedLayer.id, { color: c.hex as PaperColor })}
                     title={`${c.name} (${c.hex})`}
-                    className={`h-10 rounded-xl transition-all flex items-center justify-center ${
+                    className={`h-9 rounded-lg border-2 transition-all flex items-center justify-center ${
                       selectedLayer.color === c.hex
-                        ? 'paper-elevation-2 scale-105 border-2 border-[#1A1A1A]'
-                        : 'paper-elevation-1 hover:scale-105'
+                        ? 'border-[#0047AB] scale-110 shadow-md'
+                        : 'border-white hover:scale-105'
                     }`}
                     style={{ backgroundColor: c.hex }}
                   >
                     {selectedLayer.color === c.hex && (
                       <span
-                        className={`w-2.5 h-2.5 rounded-full ${
+                        className={`w-2 h-2 rounded-full ${
                           c.hex === '#FFFFFF' || c.hex === '#FFD600' ? 'bg-black' : 'bg-white'
                         }`}
                       />
@@ -221,21 +210,20 @@ export const PaperStudio: React.FC<PaperStudioProps> = ({
           )}
 
           {/* CSS Code Inspector for this layer */}
-          <div className="p-4 bg-[#1A1A1A] rounded-xl font-mono text-[11px] text-[#F8F9FA] space-y-1">
-            <div className="text-[10px] font-bold text-[#FFD600] font-sans flex items-center gap-1 mb-1 uppercase tracking-wider">
-              <Code2 className="w-3 h-3 text-[#FFD600]" /> CSS Rendu :
+          <div className="p-3 rounded-lg bg-[#FFFFFF] border border-[#1A1A1A]/10 font-mono text-[11px] text-[#1A1A1A] space-y-1">
+            <div className="text-[10px] font-bold text-[#0047AB] font-sans flex items-center gap-1 mb-1">
+              <Code2 className="w-3 h-3" /> CSS Généré :
             </div>
-            <div>background-color: <span className="font-bold text-[#FFD600]">{selectedLayer.color}</span>;</div>
+            <div>background-color: <span className="font-bold">{selectedLayer.color}</span>;</div>
             <div>box-shadow: <span className="text-[#06A77D]">var(--paper-elevation-{selectedLayer.elevation})</span>;</div>
-            <div>filter: <span className="text-[#E63946]">paper-filter-{selectedLayer.elevation}</span>;</div>
+            <div>filter: <span className="text-[#F77F00]">paper-filter-{selectedLayer.elevation}</span>;</div>
           </div>
         </div>
       ) : (
-        <div className="p-4 rounded-2xl bg-[#FFFFFF] paper-elevation-1 text-center text-xs text-[#1A1A1A]/60 font-medium">
-          Sélectionnez un calque dans le diorama pour modifier son relief et sa teinte.
+        <div className="p-4 rounded-xl bg-[#F4F4F0] border border-[#1A1A1A]/10 text-center text-xs text-[#1A1A1A]/60">
+          Sélectionnez un calque dans le diorama ci-dessus pour ajuster son élévation, sa couleur ou son relief.
         </div>
       )}
     </div>
   );
 };
-

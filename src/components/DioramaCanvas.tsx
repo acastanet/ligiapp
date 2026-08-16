@@ -11,16 +11,13 @@ import {
   ArchitecturalArch,
   DesertPalmCluster
 } from './PaperShapes';
-import { Info, Layers, Eye, Compass, Sparkles, RotateCcw, Sun, Rotate3d, CheckCircle2 } from 'lucide-react';
+import { Info, Layers, Eye, Compass, Sparkles } from 'lucide-react';
 
 interface DioramaCanvasProps {
   composition: DioramaComposition;
   lighting: LightingState;
   selectedLayerId: string | null;
   onSelectLayer: (layerId: string | null) => void;
-  onResetToNormalView?: () => void;
-  onResetComposition?: () => void;
-  onChangeLighting?: (updated: Partial<LightingState>) => void;
 }
 
 export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
@@ -28,25 +25,10 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
   lighting,
   selectedLayerId,
   onSelectLayer,
-  onResetToNormalView,
-  onResetComposition,
-  onChangeLighting,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [isHovered, setIsHovered] = useState(false);
-  const [showResetFeedback, setShowResetFeedback] = useState(false);
-
-  const handleResetWithFeedback = () => {
-    if (onResetComposition) {
-      onResetComposition();
-    }
-    if (onResetToNormalView) {
-      onResetToNormalView();
-    }
-    setShowResetFeedback(true);
-    setTimeout(() => setShowResetFeedback(false), 2000);
-  };
 
   // Handle dynamic mouse light tracking / subtle parallax
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -94,78 +76,7 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
   };
 
   return (
-    <div className="w-full flex flex-col items-center select-none space-y-4">
-      {/* Quick Viewport Mode Control Bar */}
-      <div className="w-full max-w-6xl flex flex-wrap items-center justify-between gap-3 p-2 bg-[#FFFFFF] rounded-2xl paper-elevation-1">
-        <div className="flex items-center gap-1.5">
-          {/* Flat 2D Normal View Button */}
-          <button
-            onClick={() => {
-              if (onResetToNormalView) {
-                onResetToNormalView();
-              } else if (onChangeLighting) {
-                onChangeLighting({
-                  explodedView: false,
-                  tiltX: 0,
-                  tiltY: 0,
-                });
-              }
-            }}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-              !lighting.explodedView && lighting.tiltX === 0 && lighting.tiltY === 0
-                ? 'bg-[#0047AB] text-white paper-elevation-1'
-                : 'text-[#1A1A1A]/70 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5'
-            }`}
-          >
-            <Sun className="w-3.5 h-3.5 text-[#FFD600]" />
-            <span>Vue Normale (2D À Plat)</span>
-            {!lighting.explodedView && lighting.tiltX === 0 && lighting.tiltY === 0 && (
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FFD600]" />
-            )}
-          </button>
-
-          {/* 3D Exploded View Button */}
-          <button
-            onClick={() => {
-              if (onChangeLighting) {
-                onChangeLighting({
-                  explodedView: true,
-                  tiltX: 24,
-                  tiltY: -28,
-                  explodeDepth: 45,
-                });
-              }
-            }}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-              lighting.explodedView
-                ? 'bg-[#0047AB] text-white paper-elevation-1'
-                : 'text-[#1A1A1A]/70 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5'
-            }`}
-          >
-            <Rotate3d className="w-3.5 h-3.5 text-[#FFD600]" />
-            <span>Vue 3D Éclatée</span>
-          </button>
-        </div>
-
-        {/* Reset to Original Composition Button */}
-        <div className="flex items-center gap-2">
-          {showResetFeedback && (
-            <span className="text-[11px] font-bold text-[#06A77D] flex items-center gap-1 animate-fadeIn">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              Original restauré !
-            </span>
-          )}
-          <button
-            onClick={handleResetWithFeedback}
-            className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-[#0047AB] hover:bg-[#0047AB]/10 transition-all flex items-center gap-1.5 paper-elevation-1 bg-[#FFFFFF]"
-            title="Rétablir la disposition, les couleurs et la vue 2D d'origine"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-[#E63946]" />
-            <span>Restaurer l'Œuvre Originale</span>
-          </button>
-        </div>
-      </div>
-
+    <div className="w-full flex flex-col items-center select-none">
       {/* Diorama 16:9 Frame Container with 3D Perspective */}
       <div
         style={{ perspective: '1600px' }}
@@ -177,7 +88,7 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`relative w-full aspect-[16/9] rounded-3xl overflow-hidden bg-[#FFFFFF] transition-transform duration-500 paper-diorama-frame-shadow ${
+          className={`relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-[#FFFFFF] border-[8px] sm:border-[12px] border-white transition-transform duration-500 shadow-2xl ${
             lighting.showGrid ? 'grid-180' : ''
           }`}
           style={{
@@ -241,14 +152,14 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
                 {/* 2. Text / Info Plaque (Strictly pure white #FFFFFF with matte black text #1A1A1A) */}
                 {layer.isTextCard && layer.textContent && (
                   <div
-                    className="p-6 sm:p-7 rounded-2xl bg-[#FFFFFF] paper-fiber-bg transition-all duration-200 hover:scale-[1.01]"
+                    className="p-6 sm:p-7 rounded-xl bg-[#FFFFFF] border-t-2 border-l-2 border-white/90 paper-fiber-bg transition-all duration-200 hover:scale-[1.01]"
                     style={{
                       boxShadow: elevationShadow,
                     }}
                   >
                     {layer.textContent.tag && (
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFFFFF] paper-elevation-1 text-[11px] font-bold tracking-wider text-[#0047AB] mb-3">
-                        <Sparkles className="w-3 h-3 text-[#FFD600]" />
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F4F4F0] border border-[#1A1A1A]/10 text-[11px] font-semibold tracking-wider text-[#1A1A1A] mb-3">
+                        <Sparkles className="w-3 h-3 text-[#F77F00]" />
                         {layer.textContent.tag}
                       </div>
                     )}
@@ -271,7 +182,7 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
 
                     {layer.textContent.metric && (
                       <div className="pt-3 border-t border-[#1A1A1A]/10 flex items-baseline justify-between">
-                        <span className="text-base font-extrabold text-[#0047AB]">
+                        <span className="text-base font-extrabold text-[#1A1A1A]">
                           {layer.textContent.metric}
                         </span>
                         <span className="text-[11px] font-medium text-[#1A1A1A]/60">
@@ -453,16 +364,16 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
       {/* Layer Quick Inspector Bar */}
       <div className="w-full max-w-6xl mt-4 px-2 flex flex-wrap items-center justify-between gap-3 text-xs text-[#1A1A1A]">
         <div className="flex items-center gap-2">
-          <span className="font-bold text-[#1A1A1A]">Calques actifs :</span>
+          <span className="font-semibold text-[#1A1A1A]">Calques actifs :</span>
           <div className="flex flex-wrap gap-1.5">
             {composition.layers.map((layer) => (
               <button
                 key={layer.id}
                 onClick={() => onSelectLayer(selectedLayerId === layer.id ? null : layer.id)}
-                className={`px-3 py-1.5 rounded-full transition-all font-semibold flex items-center gap-1.5 ${
+                className={`px-2.5 py-1 rounded-md transition-all font-medium flex items-center gap-1.5 ${
                   selectedLayerId === layer.id
-                    ? 'bg-[#0047AB] text-white paper-elevation-1'
-                    : 'bg-white paper-elevation-1 hover:paper-elevation-2 text-[#1A1A1A]'
+                    ? 'bg-[#0047AB] text-white shadow-sm'
+                    : 'bg-white border border-[#1A1A1A]/10 hover:border-[#0047AB]/40 text-[#1A1A1A]'
                 }`}
               >
                 <span
@@ -477,11 +388,11 @@ export const DioramaCanvas: React.FC<DioramaCanvasProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-white paper-elevation-1 font-medium">
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white border border-[#1A1A1A]/10">
             <Compass className="w-3.5 h-3.5 text-[#06A77D]" />
             <span>Éclairage Haut-Gauche (135°)</span>
           </div>
-          <div className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-white paper-elevation-1 font-mono font-bold text-[#0047AB]">
+          <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white border border-[#1A1A1A]/10 font-mono">
             <span>{composition.whiteSpaceRatio}</span>
           </div>
         </div>
