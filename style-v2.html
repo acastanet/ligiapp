@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="LIGIA Style V2 — page de référence HTML5/CSS du langage visuel papier, sans diorama.">
+  <title>LIGIA Style V2 — Référence HTML5/CSS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="LIGIA Style V2 — accueil">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-copy">
+          <strong>LIGIA</strong>
+          <small>style / v2</small>
+        </span>
+      </a>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="#fondations">Fondations</a>
+        <a href="#composants">Composants</a>
+        <a href="#donnees">Données</a>
+        <a href="#mise-en-page">Mise en page</a>
+      </nav>
+      <a class="btn btn-small btn-primary" href="#inventaire">Voir l’inventaire</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="hero section" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="status-dot status-green"></span> Système visuel HTML5 / CSS</span>
+          <p class="kicker">Une matière graphique nette, tactile et éditoriale.</p>
+          <h1>Le papier comme <em>interface</em>,<br>sans diorama.</h1>
+          <p class="lede">Cette nouvelle version conserve la palette, le grain, les ombres orientées et la matérialité du style existant, mais les transpose dans une page 2D complète destinée aux sites, tableaux de bord, fiches et applications.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#fondations">Explorer le système</a>
+            <a class="btn btn-secondary" href="#composants">Voir les composants</a>
+          </div>
+          <dl class="hero-facts" aria-label="Principes clés">
+            <div><dt>Base</dt><dd>#F4F4F0</dd></div>
+            <div><dt>Texte</dt><dd>#1A1A1A</dd></div>
+            <div><dt>Grille</dt><dd>180 px</dd></div>
+            <div><dt>Police</dt><dd>IBM Plex Sans</dd></div>
+          </dl>
+        </div>
+
+        <aside class="hero-board paper grain" aria-label="Aperçu du style">
+          <div class="board-head">
+            <span class="label">SYSTEM / 02</span>
+            <span class="mono">2D · responsive</span>
+          </div>
+          <div class="board-title">Clair.<br>Structuré.<br><span>Physique.</span></div>
+          <div class="board-rule"></div>
+          <div class="board-samples" aria-hidden="true">
+            <span class="sample sample-blue"></span>
+            <span class="sample sample-yellow"></span>
+            <span class="sample sample-red"></span>
+            <span class="sample sample-orange"></span>
+            <span class="sample sample-green"></span>
+          </div>
+          <p>Des aplats francs, une grande place laissée au blanc, une hiérarchie typographique forte et des ombres suffisamment présentes pour donner de la matière — jamais pour simuler une scène 3D.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="fondations">
+      <div class="container">
+        <header class="section-heading">
+          <span class="section-index">01</span>
+          <div>
+            <span class="eyebrow">Fondations</span>
+            <h2>Couleur, typo, matière, profondeur.</h2>
+            <p>Les règles qui doivent rester cohérentes d’une page à l’autre.</p>
+          </div>
+        </header>
+
+        <div class="showcase-grid palette-grid" aria-label="Palette de couleurs">
+          <article class="swatch swatch-dark"><span>Texte</span><strong>#1A1A1A</strong><small>Encre mate</small></article>
+          <article class="swatch swatch-paper"><span>Fond</span><strong>#F4F4F0</strong><small>Papier naturel</small></article>
+          <article class="swatch swatch-white"><span>Surface</span><strong>#FFFFFF</strong><small>Cartouche blanc</small></article>
+          <article class="swatch swatch-yellow"><span>Signal</span><strong>#FFD600</strong><small>Jaune</small></article>
+          <article class="swatch swatch-blue"><span>Structure</span><strong>#0047AB</strong><small>Bleu cobalt</small></article>
+          <article class="swatch swatch-red"><span>Alerte</span><strong>#E63946</strong><small>Rouge cardinal</small></article>
+          <article class="swatch swatch-orange"><span>Accent</span><strong>#F77F00</strong><small>Orange ocre</small></article>
+          <article class="swatch swatch-green"><span>Validation</span><strong>#06A77D</strong><small>Vert émeraude</small></article>
+        </div>
+
+        <div class="two-col foundations-row">
+          <article class="paper panel typography-panel">
+            <div class="panel-head">
+              <span class="label">TYPOGRAPHIE</span><span class="mono">IBM Plex Sans</span>
+            </div>
+            <div class="type-display">Aa</div>
+            <div class="type-specimen">
+              <h3>Le territoire devient lisible.</h3>
+              <p class="type-lede">Des titres très présents, des textes sobres et une micro-typographie technique.</p>
+              <p>Les contenus courants utilisent IBM Plex Sans. Plus Jakarta Sans peut servir ponctuellement pour un mot-signal, une marque ou un chiffre de forte présence.</p>
+              <p class="mono">12:48:09 / LAT 44.0694 / LON 3.6817</p>
+            </div>
+          </article>
+
+          <article class="paper panel grain">
+            <div class="panel-head"><span class="label">MATÉRIALITÉ</span><span class="mono">grain 3,5 %</span></div>
+            <div class="material-demo">
+              <div class="material-card elev-1"><span>01</span><strong>Plan</strong><small>élévation légère</small></div>
+              <div class="material-card elev-2"><span>02</span><strong>Flottant</strong><small>carte standard</small></div>
+              <div class="material-card elev-3"><span>03</span><strong>Focus</strong><small>contenu prioritaire</small></div>
+            </div>
+            <p class="note">La lumière vient du haut-gauche. Les ombres tombent vers le bas-droit. Le relief reste discret et cohérent.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="composants">
+      <div class="container">
+        <header class="section-heading">
+          <span class="section-index">02</span>
+          <div>
+            <span class="eyebrow">Composants</span>
+            <h2>Une bibliothèque d’interface utilisable.</h2>
+            <p>Boutons, navigation, badges, cartes, formulaires et états.</p>
+          </div>
+        </header>
+
+        <div class="component-stack" id="inventaire">
+          <article class="paper component-block">
+            <div class="component-title"><span class="label">ACTIONS</span><h3>Boutons</h3><p>Blanc dominant, accent coloré, pression tactile.</p></div>
+            <div class="component-demo button-row">
+              <button class="btn btn-primary" type="button">Action primaire</button>
+              <button class="btn btn-accent" type="button">Action signal</button>
+              <button class="btn btn-success" type="button">Valider</button>
+              <button class="btn btn-secondary" type="button">Secondaire</button>
+              <button class="btn btn-ghost" type="button">Discret</button>
+              <button class="icon-btn" type="button" aria-label="Ajouter">+</button>
+            </div>
+          </article>
+
+          <article class="paper component-block">
+            <div class="component-title"><span class="label">NAVIGATION</span><h3>Onglets & pagination</h3><p>Les zones actives sont des surfaces blanches nettement détachées.</p></div>
+            <div class="component-demo demo-column">
+              <nav class="tabs" aria-label="Exemple d'onglets">
+                <a class="tab active" href="#composants" aria-current="page">Vue générale</a>
+                <a class="tab" href="#composants">Données</a>
+                <a class="tab" href="#composants">Méthode</a>
+                <a class="tab" href="#composants">Sources</a>
+              </nav>
+              <nav class="pagination" aria-label="Exemple de pagination"><a href="#composants">←</a><a href="#composants">1</a><a class="active" href="#composants">2</a><a href="#composants">3</a><a href="#composants">→</a></nav>
+            </div>
+          </article>
+
+          <article class="paper component-block">
+            <div class="component-title"><span class="label">STATUTS</span><h3>Badges & messages</h3><p>La couleur indique, le texte explique.</p></div>
+            <div class="component-demo demo-column">
+              <div class="badge-row">
+                <span class="badge badge-blue">Information</span>
+                <span class="badge badge-green">Disponible</span>
+                <span class="badge badge-yellow">À vérifier</span>
+                <span class="badge badge-orange">Attention</span>
+                <span class="badge badge-red">Critique</span>
+                <span class="badge">Neutre</span>
+              </div>
+              <div class="message-grid">
+                <div class="message message-info"><strong>Information</strong><span>Les données ont été actualisées il y a 12 minutes.</span></div>
+                <div class="message message-success"><strong>Source validée</strong><span>Le jeu de données répond aux critères attendus.</span></div>
+                <div class="message message-warning"><strong>Vigilance</strong><span>Une valeur sort de la plage habituelle.</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="paper component-block">
+            <div class="component-title"><span class="label">FORMULAIRES</span><h3>Champs & contrôles</h3><p>Des contrôles natifs, lisibles, avec un focus visible.</p></div>
+            <form class="component-demo form-grid" action="#" method="get">
+              <label class="field"><span>Lieu</span><input type="text" value="Val-d’Aigoual" aria-label="Lieu"></label>
+              <label class="field"><span>Source</span><select aria-label="Source"><option>Copernicus</option><option>IGN</option><option>BRGM</option></select></label>
+              <label class="field"><span>Date</span><input type="date" value="2026-08-16" aria-label="Date"></label>
+              <fieldset class="choice-group"><legend>Mode</legend><label><input type="radio" name="mode" checked> Essentiel</label><label><input type="radio" name="mode"> Expert</label></fieldset>
+              <label class="switch"><input type="checkbox" checked><span class="switch-ui" aria-hidden="true"></span><span>Afficher les sources</span></label>
+              <label class="field field-wide"><span>Commentaire</span><textarea rows="3">Texte court destiné à expliquer la donnée ou sa méthode.</textarea></label>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="donnees">
+      <div class="container">
+        <header class="section-heading">
+          <span class="section-index">03</span>
+          <div>
+            <span class="eyebrow">Données & contenu</span>
+            <h2>Du chiffre brut à l’information lisible.</h2>
+            <p>Cartes de mesure, tableau, métriques et blocs éditoriaux.</p>
+          </div>
+        </header>
+
+        <div class="metric-grid">
+          <article class="metric-card paper"><span class="metric-kicker">Température</span><strong>18,4<span>°C</span></strong><div class="metric-meta"><span class="trend trend-up">↗ +1,8°</span><small>vs normale</small></div></article>
+          <article class="metric-card paper"><span class="metric-kicker">Altitude</span><strong>1 402<span>m</span></strong><div class="metric-meta"><span>IGN</span><small>modèle terrain</small></div></article>
+          <article class="metric-card paper"><span class="metric-kicker">Humidité</span><strong>62<span>%</span></strong><div class="metric-meta"><span class="trend trend-stable">→ stable</span><small>sur 3 h</small></div></article>
+          <article class="metric-card metric-highlight"><span class="metric-kicker">Qualité</span><strong>A</strong><div class="metric-meta"><span>Très bonne</span><small>indice synthétique</small></div></article>
+        </div>
+
+        <div class="two-col data-row">
+          <article class="paper panel table-panel">
+            <div class="panel-head"><span class="label">TABLEAU</span><span class="mono">4 sources</span></div>
+            <div class="table-wrap">
+              <table>
+                <caption>Exemple de tableau de données</caption>
+                <thead><tr><th>Source</th><th>Variable</th><th>Valeur</th><th>État</th></tr></thead>
+                <tbody>
+                  <tr><td>Copernicus</td><td>UTCI</td><td>17,9 °C</td><td><span class="tiny-status ok">validé</span></td></tr>
+                  <tr><td>IGN</td><td>Altitude</td><td>1 402 m</td><td><span class="tiny-status ok">validé</span></td></tr>
+                  <tr><td>BRGM</td><td>Lithologie</td><td>Granite</td><td><span class="tiny-status info">info</span></td></tr>
+                  <tr><td>Météo-France</td><td>Vigilance</td><td>Verte</td><td><span class="tiny-status ok">actuel</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="paper panel editorial-card grain">
+            <span class="label">BLOC ÉDITORIAL</span>
+            <blockquote>« Une donnée devient utile lorsqu’elle est située, expliquée et reliée à ce qui l’entoure. »</blockquote>
+            <p>Le style doit pouvoir porter autant un chiffre précis qu’un texte explicatif. Les zones longues restent blanches, les accents colorés servent à orienter le regard.</p>
+            <a class="text-link" href="#donnees">Lire la méthode <span>→</span></a>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <article class="paper content-card"><span class="card-number">01</span><span class="label">EXPLICATION</span><h3>Pourquoi cette valeur ?</h3><p>Un bloc court pour contextualiser une mesure et rendre sa lecture immédiatement compréhensible.</p><a href="#donnees" class="text-link">En savoir plus →</a></article>
+          <article class="paper content-card"><span class="card-number">02</span><span class="label">MÉTHODE</span><h3>Comment est-elle calculée ?</h3><p>La méthode est distincte du résultat. Elle peut être développée dans une page dédiée sans casser le rythme.</p><a href="#donnees" class="text-link">Voir le calcul →</a></article>
+          <article class="paper content-card"><span class="card-number">03</span><span class="label">SOURCE</span><h3>D’où vient la donnée ?</h3><p>Les références sont visibles mais secondaires, avec une micro-typographie technique et stable.</p><a href="#donnees" class="text-link">Consulter la source →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="mise-en-page">
+      <div class="container">
+        <header class="section-heading">
+          <span class="section-index">04</span>
+          <div>
+            <span class="eyebrow">Mise en page</span>
+            <h2>Une grille souple, des respirations nettes.</h2>
+            <p>Le système conserve le module de 180 px comme repère, sans l’imposer comme une cage.</p>
+          </div>
+        </header>
+
+        <article class="grid-demo paper grid-180">
+          <div class="grid-demo-copy">
+            <span class="label">GRILLE 180</span>
+            <h3>Construire avec des repères,<br>pas avec des contraintes.</h3>
+            <p>Les grands alignements suivent le module. Les composants utilisent ensuite une grille responsive de 12 colonnes et des espacements basés sur une échelle de 4 px.</p>
+          </div>
+          <div class="grid-demo-boxes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </article>
+
+        <div class="rules-grid">
+          <article><span class="rule-icon blue">1</span><h3>Blanc prioritaire</h3><p>Le blanc porte le texte et assure la respiration visuelle.</p></article>
+          <article><span class="rule-icon orange">2</span><h3>Une lumière</h3><p>Toutes les ombres suivent la même direction : haut-gauche vers bas-droit.</p></article>
+          <article><span class="rule-icon green">3</span><h3>Couleur fonctionnelle</h3><p>Chaque couleur a un rôle ; elle n’est pas une décoration arbitraire.</p></article>
+          <article><span class="rule-icon red">4</span><h3>Relief mesuré</h3><p>Trois niveaux suffisent pour hiérarchiser la majorité des interfaces.</p></article>
+        </div>
+
+        <details class="paper details-block">
+          <summary>Règles techniques recommandées</summary>
+          <div class="details-content">
+            <ul>
+              <li>HTML5 sémantique : <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>footer</code>.</li>
+              <li>Contrastes lisibles, focus clavier visible et composants natifs lorsque possible.</li>
+              <li>Ombres et mouvements réduits automatiquement avec <code>prefers-reduced-motion</code>.</li>
+              <li>Conteneur principal plafonné à 1180 px avec marges fluides.</li>
+              <li>Variables CSS centralisées pour faciliter les déclinaisons d’application.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-copy"><strong>LIGIA</strong><small>style / v2</small></span></a><p>Référence visuelle 2D pour des interfaces éditoriales et data.</p></div>
+      <div><span class="label">PRINCIPES</span><ul><li>Lisible</li><li>Tactile</li><li>Éditorial</li><li>Responsive</li></ul></div>
+      <div><span class="label">TECHNIQUE</span><ul><li>HTML5</li><li>CSS natif</li><li>Sans JavaScript</li><li>Sans diorama</li></ul></div>
+      <div class="footer-meta"><span class="mono">LIGIA / STYLE-02</span><span>© 2026</span></div>
+    </div>
+  </footer>
+</body>
+</html>
