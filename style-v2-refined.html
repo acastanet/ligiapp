@@ -102,7 +102,15 @@
             <label class="field"><span>Lieu</span><input type="text" value="Val-d’Aigoual"></label>
             <label class="field"><span>Source</span><select><option>Copernicus</option><option>IGN</option><option>BRGM</option></select></label>
             <fieldset class="choice-group"><legend>Mode</legend><label><input type="radio" name="mode" checked> Essentiel</label><label><input type="radio" name="mode"> Expert</label></fieldset>
-            <label class="switch"><input type="checkbox" checked><span class="switch-ui" aria-hidden="true"></span><span>Afficher les sources</span></label>
+            <label class="switch switch-sources">
+              <input type="checkbox" checked aria-describedby="sources-description">
+              <span class="switch-ui" aria-hidden="true"></span>
+              <span class="switch-copy">
+                <span class="switch-label">Afficher les sources</span>
+                <span class="switch-description" id="sources-description">Références et provenance des données</span>
+              </span>
+              <span class="switch-state" aria-hidden="true"></span>
+            </label>
             <label class="field field-wide"><span>Commentaire</span><textarea rows="3">Texte court destiné à expliquer la donnée ou sa méthode.</textarea></label>
           </form>
         </article>
