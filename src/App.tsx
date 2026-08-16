@@ -8,6 +8,7 @@ import { LayerExploder } from './components/LayerExploder';
 import { PaperStudio } from './components/PaperStudio';
 import { PaperUIComponents } from './components/PaperUIComponents';
 import { CodeExportModal } from './components/CodeExportModal';
+import { LavPage } from './components/LavPage';
 import { 
   Sparkles, 
   Layers, 
@@ -17,14 +18,16 @@ import {
   Palette, 
   Info,
   CheckCircle2,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Compass,
+  Code2
 } from 'lucide-react';
 
 export default function App() {
   const [compositions, setCompositions] = useState<DioramaComposition[]>(DIORAMA_COMPOSITIONS);
   const [activeCompId, setActiveCompId] = useState<string>(DIORAMA_COMPOSITIONS[0].id);
   const [selectedLayerId, setSelectedLayerId] = useState<string | null>(null);
-  const [activeView, setActiveView] = useState<'diorama' | 'components'>('diorama');
+  const [activeView, setActiveView] = useState<'diorama' | 'components' | 'lav'>('diorama');
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
 
   // Lighting & Diorama Physics State
@@ -93,9 +96,86 @@ export default function App() {
         onChangeView={setActiveView}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
-        {activeView === 'diorama' ? (
+      {/* Main Content Area on Pure White Background */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 relative z-10">
+        
+        {/* Hero Presentation Header - Borderless White Frame with Rounded Corners and Accentuated Shadows */}
+        <section className="relative z-10 bg-[#FFFFFF] p-8 sm:p-12 rounded-3xl paper-elevation-2 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#1A1A1A]/10">
+            <div>
+              <div className="text-xs uppercase tracking-[0.2em] font-sans font-extrabold text-[#0047AB] mb-3 flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#E63946] shadow-sm" />
+                EXPOSITION VIRTUELLE & ATELIER MULTICOUCHE
+              </div>
+              <h1 className="text-4xl sm:text-6xl font-black text-[#1A1A1A] leading-[0.95] tracking-tight font-serif-display">
+                L'ART DU<br />
+                PAPIER <span className="text-[#0047AB]">DÉCOUPÉ</span>
+              </h1>
+            </div>
+            <div className="space-y-4 max-w-md">
+              <p className="text-[#1A1A1A]/80 text-sm sm:text-base font-medium leading-relaxed">
+                Exploration tactile des formes et de la profondeur à travers la superposition de couches artisanales Canson et d'ombres physiques à lumière rasante.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => setActiveView('diorama')}
+                  className="bg-[#0047AB] text-white px-6 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-widest paper-btn flex items-center gap-2 hover:bg-[#003888]"
+                >
+                  <Compass className="w-4 h-4 text-[#FFD600]" />
+                  <span>Explorer les Dioramas</span>
+                </button>
+                <button
+                  onClick={() => setIsCodeModalOpen(true)}
+                  className="bg-[#FFFFFF] text-[#0047AB] px-6 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-widest paper-elevation-1 hover:paper-elevation-2 transition-all flex items-center gap-2"
+                >
+                  <Code2 className="w-4 h-4 text-[#E63946]" />
+                  <span>Exporter HTML/CSS</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Exhibition Meta Sub-bar */}
+          <div className="pt-2 flex flex-wrap items-center justify-between gap-4 text-xs font-bold text-[#1A1A1A]">
+            <div className="flex gap-8">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-[#1A1A1A]/50 mb-0.5">
+                  Exposition
+                </div>
+                <div className="text-sm font-bold text-[#1A1A1A] font-serif-display">
+                  Galerie de l'Instant
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-[#1A1A1A]/50 mb-0.5">
+                  Atelier
+                </div>
+                <div className="text-sm font-bold text-[#1A1A1A] font-serif-display">
+                  Studio Papier Pur
+                </div>
+              </div>
+              <div className="hidden sm:block">
+                <div className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-[#1A1A1A]/50 mb-0.5">
+                  Format
+                </div>
+                <div className="text-sm font-bold text-[#0047AB] font-mono">
+                  Ratio 16:9 • Grille 180px
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] paper-elevation-1">
+              <span className="w-3 h-3 rounded-full bg-[#06A77D]" />
+              <span className="text-xs uppercase tracking-wider font-extrabold text-[#1A1A1A]">
+                {activeComposition.title}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {activeView === 'lav' ? (
+          <LavPage />
+        ) : activeView === 'diorama' ? (
           <>
             {/* Diorama 16:9 Canvas Stage */}
             <section className="space-y-4">

@@ -19,7 +19,19 @@
   }
 }
 
-/* Paper Fiber & Grain Texture */
+.font-serif-display {
+  font-family: 'DM Serif Display', 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.04;
+}
+
+/* Global refinement: shared type scale and slightly tighter paper corners. */
+.rounded-3xl { border-radius: 1.15rem; }
+.rounded-2xl { border-radius: 0.85rem; }
+.rounded-xl { border-radius: 0.6rem; }
+.paper-frame { border-radius: 1.15rem; }
+
+/* Paper Fiber & Grain Texture (Subtle physical feel on pure white and colored cutouts) */
 .paper-fiber-bg {
   background-image: 
     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 100%),

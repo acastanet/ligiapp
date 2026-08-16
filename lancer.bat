@@ -19,5 +19,8 @@ if not exist "node_modules\" (
   )
 )
 
-echo Demarrage de l'application sur http://localhost:3000
-call npm run dev
+echo Arret de l'ancienne instance sur le port 3000...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$processIds = (Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue).OwningProcess | Select-Object -Unique; if ($processIds) { Stop-Process -Id $processIds -Force -ErrorAction SilentlyContinue }"
+
+echo Demarrage de LAV sur http://localhost:3000/lav.html
+call npm run dev -- --open /lav.html

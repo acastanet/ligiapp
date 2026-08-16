@@ -1,7 +1,7 @@
 import React from 'react';
 import { DioramaComposition, LightingState } from '../types';
 import { DIORAMA_COMPOSITIONS } from '../data/dioramas';
-import { Layers, Sun, Rotate3d, Code2, Sparkles, Compass } from 'lucide-react';
+import { Layers, Sun, Rotate3d, Code2, Sparkles, Compass, MapPinned } from 'lucide-react';
 
 interface HeaderProps {
   activeCompositionId: string;
@@ -9,8 +9,8 @@ interface HeaderProps {
   lighting: LightingState;
   onChangeLighting: (updated: Partial<LightingState>) => void;
   onOpenCodeExport: () => void;
-  activeView: 'diorama' | 'components';
-  onChangeView: (view: 'diorama' | 'components') => void;
+  activeView: 'diorama' | 'components' | 'lav';
+  onChangeView: (view: 'diorama' | 'components' | 'lav') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -61,6 +61,17 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Compass className="w-3.5 h-3.5 text-[#0047AB]" />
             <span>Galerie Dioramas 16:9</span>
+          </button>
+          <button
+            onClick={() => onChangeView('lav')}
+            className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 ${
+              activeView === 'lav'
+                ? 'bg-[#0047AB] text-white paper-elevation-1'
+                : 'text-[#1A1A1A]/70 hover:text-[#1A1A1A]'
+            }`}
+          >
+            <MapPinned className="w-4 h-4 text-[#FFD600]" />
+            <span>LAV</span>
           </button>
 
           <button
