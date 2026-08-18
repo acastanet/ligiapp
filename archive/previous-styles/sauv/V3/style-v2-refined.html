@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="Lygia Pape, l’atelier de papier — système visuel HTML/CSS pour composer des interfaces matérielles, précises et accessibles.">
+  <meta name="description" content="LIGIA Style V2 — version raffinée du système visuel papier, sans diorama.">
   <meta name="theme-color" content="#F4F4F0">
-  <title>Lygia Pape, l’atelier de papier — Référence CSS</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>LIGIA Style V2 — Référence raffinée</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F4F4F0'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%231A1A1A' stroke-width='4.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=optional" rel="stylesheet">
@@ -17,25 +17,24 @@
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="#top" aria-label="Lygia Pape, l’atelier de papier — accueil">
+    <a class="brand" href="#top" aria-label="LIGIA Style V2 — accueil">
       <span class="brand-mark brand-mark--focus-2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <span class="brand-copy"><strong>LYGIA PAPE</strong><small>atelier / papier</small></span>
+      <span class="brand-copy"><strong>LIGIA</strong><small>style / v2.1</small></span>
     </a>
     <nav class="primary-nav" aria-label="Navigation principale">
-      <a href="#fondations">Fondations</a><a href="#composants">Composants</a><a href="#donnees">Données</a><a href="#kit">Kit</a><a href="#grille">Grille</a>
+      <a href="#fondations">Fondations</a><a href="#composants">Composants</a><a href="#donnees">Données</a><a href="#grille">Grille</a>
     </nav>
     <a class="btn btn-small btn-solid" href="#composants">Inventaire</a>
   </div>
 </header>
-<div class="scroll-pane">
 <main id="contenu" tabindex="-1">
   <section class="hero section" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
         <span class="eyebrow"><span class="status-dot"></span>Système visuel HTML5 / CSS</span>
         <p class="kicker">Papier, couleur et rigueur éditoriale.</p>
-        <h1>Lygia Pape, <em>l’atelier de papier.</em></h1>
-        <p class="lede">Une version plus proche du langage original : aplats francs, IBM Plex Sans, lumière haut-gauche et surfaces blanches découpées par l’ombre. Les alignements sont stricts et les grands rayons restent contenus entre 8 et 12 px.</p>
+        <h1>Le papier comme <em>interface</em>.</h1>
+        <p class="lede">Une version plus proche du langage original : aplats francs, IBM Plex Sans, lumière haut-gauche, ombres tactiles et surfaces blanches. Les alignements sont désormais stricts, les coins moins arrondis et tous les contours sont uniformes sur leurs quatre côtés.</p>
         <div class="hero-actions">
           <a class="btn btn-solid" href="#fondations">Explorer le système</a>
           <a class="btn" href="#composants">Voir les contrôles</a>
@@ -55,16 +54,16 @@
 
   <section class="section section-rule" id="fondations">
     <div class="container">
-      <header class="section-heading"><span class="section-index">01</span><div><span class="eyebrow">Fondations</span><h2>Couleur, typo et profondeur.</h2><p>Les règles héritées du style original, resserrées pour une interface 2D cohérente. Activez une nuance pour copier son code.</p></div></header>
-      <div class="palette-grid" role="group" aria-label="Palette à copier">
-        <button type="button" class="swatch dark" data-copy="#1A1A1A" aria-label="Copier la couleur texte #1A1A1A" title="Cliquer pour copier #1A1A1A"><span>Texte</span><strong>#1A1A1A</strong><small>Encre mate</small></button>
-        <button type="button" class="swatch paper" data-copy="#F4F4F0" aria-label="Copier la couleur de fond #F4F4F0" title="Cliquer pour copier #F4F4F0"><span>Fond</span><strong>#F4F4F0</strong><small>Papier naturel</small></button>
-        <button type="button" class="swatch white" data-copy="#FFFFFF" aria-label="Copier la couleur de surface #FFFFFF" title="Cliquer pour copier #FFFFFF"><span>Surface</span><strong>#FFFFFF</strong><small>Cartouche blanc</small></button>
-        <button type="button" class="swatch yellow" data-copy="#FFD600" aria-label="Copier la couleur signal #FFD600" title="Cliquer pour copier #FFD600"><span>Signal</span><strong>#FFD600</strong><small>Jaune</small></button>
-        <button type="button" class="swatch blue" data-copy="#0047AB" aria-label="Copier la couleur structure #0047AB" title="Cliquer pour copier #0047AB"><span>Structure</span><strong>#0047AB</strong><small>Bleu cobalt</small></button>
-        <button type="button" class="swatch red" data-copy="#E63946" aria-label="Copier la couleur alerte #E63946" title="Cliquer pour copier #E63946"><span>Alerte</span><strong>#E63946</strong><small>Rouge cardinal</small></button>
-        <button type="button" class="swatch orange" data-copy="#F77F00" aria-label="Copier la couleur accent #F77F00" title="Cliquer pour copier #F77F00"><span>Accent</span><strong>#F77F00</strong><small>Orange ocre</small></button>
-        <button type="button" class="swatch green" data-copy="#06A77D" aria-label="Copier la couleur validation #06A77D" title="Cliquer pour copier #06A77D"><span>Validation</span><strong>#06A77D</strong><small>Vert émeraude</small></button>
+      <header class="section-heading"><span class="section-index">01</span><div><span class="eyebrow">Fondations</span><h2>Couleur, typo et profondeur.</h2><p>Les règles héritées du style original, resserrées pour une interface 2D cohérente. Cliquez sur une nuance pour copier son code.</p></div></header>
+      <div class="palette-grid" role="list" aria-label="Palette">
+        <article class="swatch dark" role="listitem" data-copy="#1A1A1A" title="Cliquer pour copier #1A1A1A"><span>Texte</span><strong>#1A1A1A</strong><small>Encre mate</small></article>
+        <article class="swatch paper" role="listitem" data-copy="#F4F4F0" title="Cliquer pour copier #F4F4F0"><span>Fond</span><strong>#F4F4F0</strong><small>Papier naturel</small></article>
+        <article class="swatch white" role="listitem" data-copy="#FFFFFF" title="Cliquer pour copier #FFFFFF"><span>Surface</span><strong>#FFFFFF</strong><small>Cartouche blanc</small></article>
+        <article class="swatch yellow" role="listitem" data-copy="#FFD600" title="Cliquer pour copier #FFD600"><span>Signal</span><strong>#FFD600</strong><small>Jaune</small></article>
+        <article class="swatch blue" role="listitem" data-copy="#0047AB" title="Cliquer pour copier #0047AB"><span>Structure</span><strong>#0047AB</strong><small>Bleu cobalt</small></article>
+        <article class="swatch red" role="listitem" data-copy="#E63946" title="Cliquer pour copier #E63946"><span>Alerte</span><strong>#E63946</strong><small>Rouge cardinal</small></article>
+        <article class="swatch orange" role="listitem" data-copy="#F77F00" title="Cliquer pour copier #F77F00"><span>Accent</span><strong>#F77F00</strong><small>Orange ocre</small></article>
+        <article class="swatch green" role="listitem" data-copy="#06A77D" title="Cliquer pour copier #06A77D"><span>Validation</span><strong>#06A77D</strong><small>Vert émeraude</small></article>
       </div>
       <div class="two-col">
         <article class="paper panel">
@@ -99,65 +98,65 @@
       </article>
       <article class="paper panel brand-lab">
         <div class="panel-head"><span class="label">MARQUE</span><span class="mono">9 variantes</span></div>
-        <div class="brand-grid" role="group" aria-label="Variantes de la marque à copier">
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark" aria-label="Copier la classe brand-mark" title="Cliquer pour copier la classe">
+        <div class="brand-grid" role="list" aria-label="Variantes de la marque">
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark" title="Cliquer pour copier la classe">
             <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-            <strong>Neutre</strong><span class="mono">brand-mark</span><small>Base monochrome destinée aux usages sobres et techniques.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--constellation" aria-label="Copier la classe brand-mark--constellation" title="Cliquer pour copier la classe">
+            <strong>Neutre</strong><span class="mono">brand-mark</span><small>Gris 50 %, forme canonique de l’en-tête et du favicon.</small>
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--constellation" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--constellation" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Constellation</strong><span class="mono">--constellation</span><small>Six points, six aplats : couverture large.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--duo" aria-label="Copier la classe brand-mark--duo" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--duo" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--duo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Duo</strong><span class="mono">--duo</span><small>Deux points : tient encore à 16 px.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--solar" aria-label="Copier la classe brand-mark--solar" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--solar" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--solar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Solaire</strong><span class="mono">--solar</span><small>Disque jaune, points à l’encre.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--ring" aria-label="Copier la classe brand-mark--ring" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--ring" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--ring" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Anneau</strong><span class="mono">--ring</span><small>Bande posée, trou en creux : les deux ombres cohabitent.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--constellation-ring" aria-label="Copier la classe brand-mark--constellation-ring" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--constellation-ring" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--constellation-ring" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Constellation anneau</strong><span class="mono">--constellation-ring</span><small>Le semis complet flotte dans le creux de l’anneau.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--paper" aria-label="Copier la classe brand-mark--paper" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--paper" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--paper" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Papier</strong><span class="mono">--paper</span><small>Disque blanc posé, ombre portée au-dehors.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--constellation-paper" aria-label="Copier la classe brand-mark--constellation-paper" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--constellation-paper" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--constellation-paper" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Constellation papier</strong><span class="mono">--constellation-paper</span><small>Même anneau, semis tourné de 30°.</small>
-          </button>
-          <button type="button" class="brand-tile paper-interactive" data-copy="brand-mark--deboss" aria-label="Copier la classe brand-mark--deboss" title="Cliquer pour copier la classe">
+          </div>
+          <div class="brand-tile paper-interactive" role="listitem" data-copy="brand-mark--deboss" title="Cliquer pour copier la classe">
             <span class="brand-mark brand-mark--deboss" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Empreinte</strong><span class="mono">--deboss</span><small>Disque blanc creusé, ombre interne.</small>
-          </button>
+          </div>
         </div>
         <p class="note">Toutes les variantes partagent le même balisage à six points et se règlent par <span class="mono">--mark-size</span> : les positions sont exprimées en pourcentage du disque.</p>
       </article>
       <article class="paper panel focus-lab">
         <div class="panel-head"><span class="label">FOCUS</span><span class="mono">3 états + animation</span></div>
-        <div class="focus-row" role="group" aria-label="États de convergence de la marque Focus à copier">
-          <button type="button" class="focus-tile paper-interactive" data-copy="brand-mark--focus-1" aria-label="Copier la classe brand-mark--focus-1" title="Cliquer pour copier">
+        <div class="focus-row" role="list" aria-label="États de convergence de la marque Focus">
+          <div class="focus-tile paper-interactive" role="listitem" data-copy="brand-mark--focus-1" title="Cliquer pour copier">
             <span class="brand-mark brand-mark--focus-1" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>État 1</strong><span class="mono">--focus-1</span><small>Majoritairement dehors</small>
-          </button>
-          <button type="button" class="focus-tile paper-interactive" data-copy="brand-mark--focus-2" aria-label="Copier la classe brand-mark--focus-2" title="Cliquer pour copier">
+          </div>
+          <div class="focus-tile paper-interactive" role="listitem" data-copy="brand-mark--focus-2" title="Cliquer pour copier">
             <span class="brand-mark brand-mark--focus-2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>État 2</strong><span class="mono">--focus-2</span><small>Majoritairement sur l’anneau</small>
-          </button>
-          <button type="button" class="focus-tile paper-interactive" data-copy="brand-mark--focus-3" aria-label="Copier la classe brand-mark--focus-3" title="Cliquer pour copier">
+          </div>
+          <div class="focus-tile paper-interactive" role="listitem" data-copy="brand-mark--focus-3" title="Cliquer pour copier">
             <span class="brand-mark brand-mark--focus-3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>État 3</strong><span class="mono">--focus-3</span><small>Tous dedans</small>
-          </button>
-          <button type="button" class="focus-tile paper-interactive" data-copy="brand-mark--focus-live" aria-label="Copier la classe brand-mark--focus-live" title="Cliquer pour copier">
+          </div>
+          <div class="focus-tile paper-interactive" role="listitem" data-copy="brand-mark--focus-live" title="Cliquer pour copier">
             <span class="brand-mark brand-mark--focus-live" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
             <strong>Animé</strong><span class="mono">--focus-live</span><small>Boucle continue</small>
-          </button>
+          </div>
         </div>
         <p class="note">Cinq points convergent depuis l’extérieur de la marque jusqu’à son centre, en passant par le cercle de l’anneau — le point ancre garde toujours une longueur d’avance, pour que la transition reste progressive plutôt que tranchée.</p>
       </article>
@@ -200,11 +199,11 @@
           <div class="component-demo">
             <div class="control-grid">
               <label class="range-field"><span class="range-head"><span>Intensité d'ombre</span><output for="r1" aria-hidden="true">100 %</output></span><input id="r1" type="range" min="20" max="180" value="100" data-unit=" %" data-var="--shadow-intensity" data-scale="0.01"></label>
-              <label class="range-field"><span class="range-head"><span>Rayon de flou</span><output for="r2" aria-hidden="true">1.0x</output></span><input id="r2" type="range" min="5" max="25" value="10" data-unit="x" data-var="--shadow-blur-scale" data-scale="0.1" data-display-scale="0.1" data-decimals="1"></label>
-              <label class="range-field"><span class="range-head"><span>Espacement de grille</span><output for="r3" aria-hidden="true">24 px</output></span><input id="r3" type="range" min="12" max="48" value="24" data-unit=" px" data-var="--grid-gap" data-css-unit="px"></label>
-              <label class="range-field"><span class="range-head"><span>Rayon des grandes cartes</span><output for="r4" aria-hidden="true">12 px</output></span><input id="r4" type="range" min="8" max="12" value="12" data-unit=" px" data-var="--radius-lg" data-css-unit="px"></label>
+              <label class="range-field"><span class="range-head"><span>Rayon de flou</span><output for="r2" aria-hidden="true">1.0x</output></span><input id="r2" type="range" min="5" max="25" value="10" data-unit="x" data-var="--shadow-blur-scale" data-scale="0.1"></label>
+              <label class="range-field"><span class="range-head"><span>Espacement de grille</span><output for="r3" aria-hidden="true">24 px</output></span><input id="r3" type="range" min="12" max="48" value="24" data-unit=" px" data-var="--grid-gap"></label>
+              <label class="range-field"><span class="range-head"><span>Rayon d'arrondi</span><output for="r4" aria-hidden="true">12 px</output></span><input id="r4" type="range" min="2" max="24" value="12" data-unit=" px" data-var="--radius-md"></label>
             </div>
-            <div class="component-toolbar">
+            <div style="display: flex; justify-content: flex-end; margin-top: var(--sp-4); border-top: var(--border); padding-top: var(--sp-3);">
               <button class="btn btn-small" id="reset-sliders-btn" type="button">↺ Réinitialiser les variables</button>
             </div>
           </div>
@@ -223,8 +222,8 @@
             </label>
             <label class="field has-error">
               <div class="field-head"><span>Identifiant station</span></div>
-              <input type="text" value="FR-AIG-99" aria-invalid="true" aria-describedby="station-error">
-              <span class="field-error-msg" id="station-error"><span aria-hidden="true">⚠</span> Identifiant non reconnu par le réseau</span>
+              <input type="text" value="FR-AIG-99" aria-invalid="true">
+              <span class="field-error-msg">⚠️ Identifiant non reconnu par le réseau</span>
             </label>
             <label class="field">
               <div class="field-head"><span>Capteur secondaire</span></div>
@@ -253,7 +252,7 @@
               <div class="message warning"><strong>Attention</strong><span>Valeur hors plage habituelle.</span></div>
               <div class="message danger"><strong>Alerte</strong><span>Capteur hors ligne.</span></div>
             </div>
-            <div class="button-matrix-row status-row">
+            <div class="button-matrix-row" style="margin-top: var(--sp-4); border-top: var(--border); padding-top: var(--sp-3);">
               <span class="status ok">● validé</span>
               <span class="status info">ℹ info</span>
               <span class="status warning">▲ vigilance</span>
@@ -265,7 +264,7 @@
 
         <article class="paper component-block">
           <div class="component-title"><span class="label">DIALOGUE</span><h3>Modale native HTML5</h3><p>Boîte de dialogue <code>&lt;dialog&gt;</code> accessible sans sur-ingénierie JS.</p></div>
-          <div class="component-demo dialog-demo">
+          <div class="component-demo" style="display: flex; align-items: center; justify-content: flex-start;">
             <button class="btn btn-solid" id="open-demo-dialog-btn" type="button">Ouvrir la modale de démonstration</button>
           </div>
         </article>
@@ -277,17 +276,17 @@
     <div class="container">
       <header class="section-heading"><span class="section-index">03</span><div><span class="eyebrow">Données</span><h2>Mesures et lecture rapide.</h2><p>Des cartes enrichies de micro-indicateurs et un tableau aux chiffres tabulaires alignés.</p></div></header>
       <div class="metric-grid">
-        <article class="metric-card paper">
+        <article class="metric-card paper paper-interactive" title="Détails de la température">
           <span class="metric-kicker">Température</span>
           <strong>18,4<span>°C</span></strong>
           <div class="metric-meta"><span>↗ +1,8°</span><small>vs normale</small></div>
         </article>
-        <article class="metric-card paper">
+        <article class="metric-card paper paper-interactive" title="Détails de l'altitude">
           <span class="metric-kicker">Altitude</span>
           <strong>1 402<span>m</span></strong>
           <div class="metric-meta"><span>IGN</span><small>terrain</small></div>
         </article>
-        <article class="metric-card paper">
+        <article class="metric-card paper paper-interactive" title="Détails de l'humidité">
           <span class="metric-kicker">Humidité</span>
           <div>
             <strong>62<span>%</span></strong>
@@ -295,7 +294,7 @@
           </div>
           <div class="metric-meta"><span>→ stable</span><small>sur 3 h</small></div>
         </article>
-        <article class="metric-card metric-highlight">
+        <article class="metric-card metric-highlight paper-interactive" title="Indice de qualité">
           <span class="metric-kicker">Qualité globale</span>
           <strong>A</strong>
           <div class="metric-meta"><span>Très bonne</span><small>indice</small></div>
@@ -320,103 +319,9 @@
           </div>
         </article>
         <article class="paper panel">
-          <div class="panel-head"><span class="label">RÈGLE</span><span class="mono">ombre / sans contour</span></div>
-          <h3 class="rule-title">L’ombre découpe le papier.</h3>
-          <p class="rule-text">Les grandes surfaces de papier restent sans contour : leur séparation vient exclusivement de la lumière haut-gauche et de l’ombre portée. Les champs et boutons conservent une bordure complète uniquement pour rendre leur fonction interactive immédiatement perceptible.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-soft" id="kit">
-    <div class="container">
-      <header class="section-heading">
-        <span class="section-index" aria-hidden="true">04</span>
-        <div>
-          <h2>Kit de composition.</h2>
-          <p>Le vocabulaire à employer pour construire sans réinventer le style. Chaque recette est autonome : copiez-la, puis ne changez que le contenu et les variables prévues.</p>
-        </div>
-      </header>
-
-      <div class="kit-overview">
-        <article class="paper kit-contract">
-          <div class="panel-head"><span class="label">CONTRAT DE COMPOSITION</span><span class="mono">à conserver</span></div>
-          <h3>Les noms décrivent un rôle, jamais un effet.</h3>
-          <dl class="contract-list">
-            <div><dt><code>.paper-card</code></dt><dd>Contenu éditorial posé sur papier blanc.</dd></div>
-            <div><dt><code>.paper-control</code></dt><dd>Champ, bouton ou choix manipulable.</dd></div>
-            <div><dt><code>.paper-stage</code></dt><dd>Scène qui reçoit des couches, sans perspective.</dd></div>
-            <div><dt><code>.paper-layer--1…3</code></dt><dd>Niveau de profondeur, du plus proche au plus dense.</dd></div>
-          </dl>
-          <div class="token-row" role="group" aria-label="Tokens sémantiques à copier">
-            <button class="token-chip" type="button" data-copy="var(--surface-raised)">surface élevée</button>
-            <button class="token-chip" type="button" data-copy="var(--text-primary)">texte principal</button>
-            <button class="token-chip" type="button" data-copy="var(--elevation-surface)">élévation 1</button>
-          </div>
-        </article>
-
-        <article class="paper kit-rules">
-          <div class="panel-head"><span class="label">GARDE-FOUS</span><span class="mono">non négociables</span></div>
-          <h3>Ce qui maintient la matière juste.</h3>
-          <ul class="rules-list">
-            <li>Une source lumineuse haut-gauche ; les ombres partent bas-droite.</li>
-            <li>Le texte courant vit sur du blanc ou sur le papier minéral, jamais sur un aplat vif.</li>
-            <li>Pas de néomorphisme, pas de perspective 3D, pas de grand rayon décoratif.</li>
-            <li>Une ombre correspond à un niveau de papier ; elle ne sert jamais de décoration isolée.</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="recipe-grid" aria-label="Recettes HTML à copier">
-        <article class="paper recipe-card">
-          <div class="recipe-head"><div><span class="label">RECETTE 01</span><h3>Cartouche éditorial</h3></div><span class="mono">contenu / priorité</span></div>
-          <p>Pour une information principale : papier blanc, titre court, texte lisible et action secondaire.</p>
-          <pre class="recipe-code"><code>&lt;article class="paper-card"&gt;
-  &lt;h3&gt;Titre clair&lt;/h3&gt;
-  &lt;p&gt;Texte sur papier calme.&lt;/p&gt;
-  &lt;button class="paper-control"&gt;Voir le détail&lt;/button&gt;
-&lt;/article&gt;</code></pre>
-          <button class="btn btn-small btn-solid" type="button" data-copy-template="recipe-editorial">Copier la recette</button>
-          <template id="recipe-editorial"><article class="paper-card">
-  <h3>Titre clair</h3>
-  <p>Texte sur papier calme.</p>
-  <button class="paper-control" type="button">Voir le détail</button>
-</article></template>
-        </article>
-
-        <article class="paper recipe-card">
-          <div class="recipe-head"><div><span class="label">RECETTE 02</span><h3>Champ documenté</h3></div><span class="mono">saisie / aide</span></div>
-          <p>Pour une donnée à modifier : libellé explicite, aide courte et état d’erreur immédiatement compréhensible.</p>
-          <pre class="recipe-code"><code>&lt;label class="paper-field"&gt;
-  &lt;span&gt;Nom du lieu&lt;/span&gt;
-  &lt;input type="text" /&gt;
-  &lt;small&gt;Précisez la commune.&lt;/small&gt;
-&lt;/label&gt;</code></pre>
-          <button class="btn btn-small btn-solid" type="button" data-copy-template="recipe-field">Copier la recette</button>
-          <template id="recipe-field"><label class="paper-field">
-  <span>Nom du lieu</span>
-  <input type="text" />
-  <small>Précisez la commune.</small>
-</label></template>
-        </article>
-
-        <article class="paper recipe-card">
-          <div class="recipe-head"><div><span class="label">RECETTE 03</span><h3>Scène en papier découpé</h3></div><span class="mono">couches / 2D</span></div>
-          <p>Pour une composition matérielle : couches strictement planes, profondeur progressive et aucun texte sur les aplats colorés.</p>
-          <pre class="recipe-code"><code>&lt;section class="paper-stage"&gt;
-  &lt;div class="paper-layer paper-layer--1"&gt;&lt;/div&gt;
-  &lt;div class="paper-layer paper-layer--2"&gt;&lt;/div&gt;
-  &lt;article class="paper-card"&gt;…&lt;/article&gt;
-&lt;/section&gt;</code></pre>
-          <button class="btn btn-small btn-solid" type="button" data-copy-template="recipe-stage">Copier la recette</button>
-          <template id="recipe-stage"><section class="paper-stage">
-  <div class="paper-layer paper-layer--1"></div>
-  <div class="paper-layer paper-layer--2"></div>
-  <article class="paper-card">
-    <h3>Titre sur papier blanc</h3>
-    <p>Le texte ne se pose pas sur l’aplat coloré.</p>
-  </article>
-</section></template>
+          <div class="panel-head"><span class="label">RÈGLE</span><span class="mono">contour / 1 px</span></div>
+          <h3 class="rule-title">Une bordure, quatre côtés.</h3>
+          <p class="rule-text">Les cartes, boutons, champs, messages, badges et contrôles doivent toujours utiliser un contour continu de même épaisseur sur les quatre côtés. La couleur d’état passe par le texte, le fond ou un repère intérieur.</p>
         </article>
       </div>
     </div>
@@ -424,7 +329,7 @@
 
   <section class="section section-soft" id="grille">
     <div class="container">
-      <header class="section-heading"><span class="section-index">05</span><div><span class="eyebrow">Mise en page</span><h2>Alignements sans ambiguïté.</h2><p>Une grille 12 colonnes remplace les décalages décoratifs : tous les blocs partagent des axes communs.</p></div></header>
+      <header class="section-heading"><span class="section-index">04</span><div><span class="eyebrow">Mise en page</span><h2>Alignements sans ambiguïté.</h2><p>Une grille 12 colonnes remplace les décalages décoratifs : tous les blocs partagent des axes communs.</p></div></header>
       <div class="grid-demo paper"><article class="grid-block grid-a"><span class="label">7 COLONNES</span><h3>Contenu principal</h3><p>Texte, graphiques ou information prioritaire.</p></article><article class="grid-block grid-b"><span class="label">5 COLONNES</span><h3>Complément</h3><p>Métadonnées, méthode ou contrôle.</p></article></div>
     </div>
   </section>
@@ -432,16 +337,15 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <strong>Lygia Pape — l’atelier de papier</strong>
-    <span>HTML5 · CSS · kit de composition · profondeur par l’ombre · <img src="favicon.svg" width="16" height="16" alt="" style="vertical-align:-3px" aria-hidden="true"> <code>favicon.svg</code></span>
+    <strong>LIGIA — Style V2.1</strong>
+    <span>HTML5 · CSS · sans diorama · contours uniformes</span>
   </div>
 </footer>
-</div>
 
 <!-- Modale papier native -->
-<dialog id="demo-dialog" class="paper paper-dialog" aria-labelledby="dialog-title">
+<dialog id="demo-dialog" class="paper paper-dialog">
   <div class="dialog-head">
-    <h3 id="dialog-title">Fiche technique de la station</h3>
+    <h3>Fiche technique de la station</h3>
     <button class="btn btn-small btn-icon" id="close-dialog-x" aria-label="Fermer" type="button">✕</button>
   </div>
   <p>Cette boîte de dialogue utilise l’élément HTML5 natif <code>&lt;dialog&gt;</code>. Elle bénéficie d’un piège de focus automatique, d’une fermeture par touche <kbd>Échap</kbd> et d’un arrière-plan flouté au papier.</p>
@@ -452,9 +356,9 @@
 </dialog>
 
 <!-- Toast de notification -->
-<div id="toast-notice" class="toast-notice" role="status" aria-live="polite" aria-atomic="true">
+<div id="toast-notice" class="toast-notice" role="status" aria-live="polite">
   <span class="dot"></span>
-  <span id="toast-text"></span>
+  <span id="toast-text">Copié dans le presse-papier !</span>
 </div>
 
 <script>
@@ -466,23 +370,24 @@ rangeInputs.forEach(function (input) {
   var output = input.id ? document.querySelector('output[for="' + input.id + '"]') : null;
   var cssVar = input.dataset.var;
   var scale = parseFloat(input.dataset.scale) || 1;
-  var displayScale = parseFloat(input.dataset.displayScale);
-  var decimals = parseInt(input.dataset.decimals, 10);
   var unit = input.dataset.unit || '';
-  var cssUnit = input.dataset.cssUnit || '';
-
-  if (isNaN(displayScale)) displayScale = 1;
-  if (isNaN(decimals)) decimals = 0;
 
   function sync() {
     var rawVal = parseFloat(input.value);
-    var displayNumber = rawVal * displayScale;
-    var displayVal = (decimals > 0 ? displayNumber.toFixed(decimals) : displayNumber.toString()) + unit;
+    var displayVal = input.value + unit;
     if (output) output.textContent = displayVal;
     input.setAttribute('aria-valuetext', displayVal);
 
     if (cssVar) {
-      root.style.setProperty(cssVar, (rawVal * scale).toString() + cssUnit);
+      if (cssVar === '--radius-md') {
+        root.style.setProperty('--radius-md', rawVal + 'px');
+        root.style.setProperty('--radius-lg', Math.round(rawVal * 1.5) + 'px');
+        root.style.setProperty('--radius-sm', Math.round(rawVal * 0.66) + 'px');
+      } else if (cssVar === '--grid-gap') {
+        root.style.setProperty('--grid-gap', rawVal + 'px');
+      } else {
+        root.style.setProperty(cssVar, (rawVal * scale).toString());
+      }
     }
   }
 
@@ -494,9 +399,13 @@ rangeInputs.forEach(function (input) {
 var resetBtn = document.getElementById('reset-sliders-btn');
 if (resetBtn) {
   resetBtn.addEventListener('click', function () {
-    rangeInputs.forEach(function (input) {
-      input.value = input.defaultValue;
-      input.dispatchEvent(new Event('input'));
+    var defaults = { r1: '100', r2: '10', r3: '24', r4: '12' };
+    Object.keys(defaults).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.value = defaults[id];
+        el.dispatchEvent(new Event('input'));
+      }
     });
     showToast('Variables réinitialisées aux valeurs nominales');
   });
@@ -514,59 +423,20 @@ function showToast(msg) {
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(function () {
     toastEl.classList.remove('is-visible');
-    toastText.textContent = '';
   }, 2200);
-}
-
-function legacyCopy(value) {
-  var copyBuffer = document.createElement('textarea');
-  var copied = false;
-  copyBuffer.value = value;
-  copyBuffer.setAttribute('readonly', '');
-  copyBuffer.className = 'visually-hidden';
-  document.body.appendChild(copyBuffer);
-  copyBuffer.select();
-  copyBuffer.setSelectionRange(0, value.length);
-  try {
-    copied = typeof document.execCommand === 'function' && document.execCommand('copy');
-  } catch (error) {
-    copied = false;
-  }
-  copyBuffer.remove();
-  return copied;
-}
-
-function copyValue(value) {
-  if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-    return navigator.clipboard.writeText(value).then(function () {
-      return true;
-    }).catch(function () {
-      return legacyCopy(value);
-    });
-  }
-  return Promise.resolve(legacyCopy(value));
 }
 
 document.querySelectorAll('[data-copy]').forEach(function (el) {
   el.addEventListener('click', function () {
     var val = el.getAttribute('data-copy');
     if (!val) return;
-    copyValue(val).then(function (copied) {
-      showToast(copied ? 'Copié : ' + val : 'Copie impossible : ' + val);
-    });
-  });
-});
-
-// --- Recettes HTML : le contenu du template est copié tel quel -------------
-document.querySelectorAll('[data-copy-template]').forEach(function (el) {
-  el.addEventListener('click', function () {
-    var templateId = el.getAttribute('data-copy-template');
-    var template = templateId ? document.getElementById(templateId) : null;
-    var val = template instanceof HTMLTemplateElement ? template.innerHTML.trim() : '';
-    if (!val) return;
-    copyValue(val).then(function (copied) {
-      showToast(copied ? 'Recette copiée : ' + templateId : 'Copie impossible : ' + templateId);
-    });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(val).then(function () {
+        showToast('Copié : ' + val);
+      });
+    } else {
+      showToast('Sélection : ' + val);
+    }
   });
 });
 

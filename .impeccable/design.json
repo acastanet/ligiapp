@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-18T00:00:20.0944400+02:00",
+  "title": "Design System: Lygia Pape, l'atelier de papier",
+  "extensions": {
+    "colorMeta": {
+      "atelier-blue": { "role": "primary", "displayName": "Bleu d'atelier", "canonical": "#0047AB", "tonalRamp": ["#00152F", "#00255B", "#003888", "#0047AB", "#2664C6", "#5A8AD9", "#9BB8E8", "#E1EBF7"] },
+      "signal-yellow": { "role": "secondary", "displayName": "Jaune signal", "canonical": "#FFD600", "tonalRamp": ["#332700", "#665000", "#997900", "#FFD600", "#FFE05C", "#FFE98A", "#FFF2B8", "#FFF9E3"] },
+      "ochre-orange": { "role": "secondary", "displayName": "Orange ocre", "canonical": "#F77F00", "tonalRamp": ["#321900", "#663300", "#994C00", "#F77F00", "#FF9E31", "#FFB95F", "#FFD28F", "#FFEDC4"] },
+      "validation-green": { "role": "tertiary", "displayName": "Vert de validation", "canonical": "#06A77D", "tonalRamp": ["#012D21", "#04513D", "#067056", "#06A77D", "#3DC29B", "#78D6B9", "#AFE7D6", "#E0F6EE"] },
+      "cardinal-red": { "role": "tertiary", "displayName": "Rouge cardinal", "canonical": "#E63946", "tonalRamp": ["#30080C", "#611219", "#931C25", "#E63946", "#EF6670", "#F59197", "#F9BCC0", "#FDE4E5"] },
+      "mineral-paper": { "role": "neutral", "displayName": "Papier minéral", "canonical": "#F4F4F0", "tonalRamp": ["#252522", "#4C4C47", "#777770", "#A5A59D", "#C8C8C0", "#DDDCD6", "#EBEBE5", "#F4F4F0"] },
+      "surface-white": { "role": "neutral", "displayName": "Surface blanche", "canonical": "#FFFFFF", "tonalRamp": ["#2B2B2B", "#555555", "#808080", "#AAAAAA", "#CCCCCC", "#E5E5E5", "#F4F4F4", "#FFFFFF"] },
+      "carbon-ink": { "role": "neutral", "displayName": "Encre carbone", "canonical": "#1A1A1A", "tonalRamp": ["#0A0A0A", "#1A1A1A", "#383838", "#5C5C5C", "#858585", "#AEAEAE", "#D4D4D4", "#F2F2F2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Titre éditorial", "purpose": "Déclarations de hero et titres de système à forte présence." },
+      "headline": { "displayName": "Titre de section", "purpose": "Hiérarchiser les grands chapitres de la référence." },
+      "body": { "displayName": "Lecture utilitaire", "purpose": "Explications, contenus courants et descriptions de composants." },
+      "label": { "displayName": "Repère éditorial", "purpose": "Catégories, indices et libellés de système." },
+      "mono": { "displayName": "Donnée technique", "purpose": "Valeurs, coordonnées, unités et métadonnées." }
+    },
+    "shadows": [
+      { "name": "paper-1", "value": "2px 3px calc(6px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.14 * var(--shadow-intensity))), 8px 10px calc(16px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.22 * var(--shadow-intensity)))", "purpose": "Plan de papier standard : cartes, boutons et surfaces posées." },
+      { "name": "paper-2", "value": "3px 5px calc(9px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.16 * var(--shadow-intensity))), 14px 18px calc(26px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.26 * var(--shadow-intensity)))", "purpose": "Plan plus élevé : survol et objets prioritaires." },
+      { "name": "paper-3", "value": "5px 7px calc(12px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.18 * var(--shadow-intensity))), 20px 26px calc(36px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.30 * var(--shadow-intensity)))", "purpose": "Élévation exceptionnelle, à employer avec retenue." },
+      { "name": "paper-sunken", "value": "inset 1px 2px calc(4px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.14 * var(--shadow-intensity))), inset 4px 6px calc(10px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.09 * var(--shadow-intensity))), inset -1px -1px 0 rgb(255 255 255 / .70)", "purpose": "Cavité de papier : zones de démonstration et surfaces en creux." },
+      { "name": "pressed", "value": "1px 2px 4px rgb(var(--shadow-color) / .14), inset 0 2px 4px rgb(var(--shadow-color) / .08)", "purpose": "Retour tactile pendant l'activation d'un contrôle." }
+    ],
+    "motion": [
+      { "name": "paper-standard", "value": "cubic-bezier(.2, .8, .2, 1)", "purpose": "Transition standard de 160 ms pour relief et état." },
+      { "name": "focus-convergence", "value": "5.5s cubic-bezier(.2, .8, .2, 1) infinite alternate", "purpose": "Convergence lente des points de la marque ; toujours désactivée avec prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "editorial-stack", "value": "940px" },
+      { "name": "compact-single-column", "value": "620px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bouton primaire",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Action majeure, posée comme une découpe de papier bleu.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Explorer le système</button>",
+      "css": ".ds-btn-primary { min-height: 44px; padding: 12px 16px; border: 1px solid var(--paper-blue); border-radius: var(--radius-sm); background: var(--paper-blue); color: var(--paper-white); font: 700 var(--text-sm) var(--font-sans); cursor: pointer; box-shadow: var(--shadow-2); transition: transform .15s var(--ease), box-shadow .15s var(--ease), background .15s var(--ease), border-color .15s var(--ease); } .ds-btn-primary:hover { background: var(--paper-blue-hover); border-color: var(--paper-blue-hover); } .ds-btn-primary:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); } .ds-btn-primary:active { transform: translate(2px, 3px); box-shadow: var(--shadow-pressed); }"
+    },
+    {
+      "name": "Bouton secondaire",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Action secondaire blanche, bordée et tactile.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">Voir les contrôles</button>",
+      "css": ".ds-btn-secondary { min-height: 44px; padding: 12px 16px; border: var(--control-border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: 700 var(--text-sm) var(--font-sans); cursor: pointer; box-shadow: var(--shadow-1); transition: transform .15s var(--ease), box-shadow .15s var(--ease), border-color .15s var(--ease); } .ds-btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); } .ds-btn-secondary:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); } .ds-btn-secondary:active { transform: translate(2px, 3px); box-shadow: var(--shadow-pressed); }"
+    },
+    {
+      "name": "Surface papier",
+      "kind": "card",
+      "refersTo": "paper-surface",
+      "description": "Conteneur blanc posé sur le papier minéral, sans contour décoratif.",
+      "html": "<article class=\"ds-paper-card\"><span class=\"ds-card-label\">SYSTEM / 02.1</span><h3>Clair. Structuré. Tactile.</h3><p>Une surface blanche découpée par la lumière.</p></article>",
+      "css": ".ds-paper-card { padding: 24px; border: none; border-radius: var(--radius-lg); background: var(--surface); color: var(--text); box-shadow: var(--shadow-1); font-family: var(--font-sans); } .ds-card-label { display: block; margin-bottom: 12px; color: var(--ink-blue); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-label); } .ds-paper-card h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: 1.48rem; letter-spacing: var(--tracking-tight); } .ds-paper-card p { margin: 0; color: var(--text-muted); font-size: var(--text-sm); line-height: 1.55; }"
+    },
+    {
+      "name": "Champ de texte",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "Champ lisible à bordure fonctionnelle et profondeur intérieure discrète.",
+      "html": "<label class=\"ds-field\"><span>Lieu d’observation</span><input value=\"Val-d’Aigoual\" /></label>",
+      "css": ".ds-field { display: grid; gap: var(--sp-2); color: var(--text-muted); font: 700 var(--text-xs) var(--font-sans); } .ds-field input { width: 100%; padding: var(--sp-3); border: var(--control-border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); box-shadow: var(--shadow-inset-field); font: 400 1rem var(--font-sans); transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease); } .ds-field input:focus-visible { border-color: var(--focus-color); outline: var(--focus-ring); outline-offset: var(--focus-offset); }"
+    },
+    {
+      "name": "Navigation éditoriale",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "Lien de navigation compact, structuré et lisible dans un en-tête papier.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navigation de démonstration\"><a href=\"#\">Fondations</a><a href=\"#\">Composants</a><a href=\"#\">Données</a></nav>",
+      "css": ".ds-nav { display: flex; gap: var(--sp-1); font: 700 var(--text-xs) var(--font-sans); } .ds-nav a { padding: var(--sp-2) var(--sp-3); border-radius: var(--radius-xs); color: var(--text); text-decoration: none; transition: color var(--speed) var(--ease), background var(--speed) var(--ease); } .ds-nav a:hover, .ds-nav a:focus-visible { background: var(--surface); color: var(--ink-blue); outline: none; } .ds-nav a:focus-visible { box-shadow: 0 0 0 2px var(--focus-color); }"
+    },
+    {
+      "name": "Statut sémantique",
+      "kind": "chip",
+      "refersTo": "status-success",
+      "description": "Badge de lecture rapide pour signaler un état sans perdre le libellé textuel.",
+      "html": "<span class=\"ds-status-success\">● validé</span>",
+      "css": ".ds-status-success { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px solid rgb(6 167 125 / .25); border-radius: var(--radius-xs); background: rgb(6 167 125 / .06); color: var(--ink-green); font: 700 var(--text-xs) var(--font-sans); }"
+    },
+    {
+      "name": "Interrupteur de sources",
+      "kind": "custom",
+      "refersTo": "sources-switch",
+      "description": "Contrôle tactile qui rend son état visible par position, couleur et libellé.",
+      "html": "<label class=\"ds-switch\"><input type=\"checkbox\" checked /><span class=\"ds-switch-ui\" aria-hidden=\"true\"></span><span>Afficher les sources</span></label>",
+      "css": ".ds-switch { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--text); font: 600 var(--text-sm) var(--font-sans); cursor: pointer; } .ds-switch input { position: absolute; opacity: 0; pointer-events: none; } .ds-switch-ui { width: 42px; height: var(--sp-6); padding: 3px; border: var(--control-border); border-radius: var(--radius-md); background: rgb(26 26 26 / .16); transition: background var(--speed) var(--ease); } .ds-switch-ui::before { content: \"\"; display: block; width: var(--sp-4); height: var(--sp-4); border: var(--control-border); border-radius: var(--radius-xs); background: var(--surface); box-shadow: 2px 3px 5px rgb(var(--shadow-color) / .18); transition: transform var(--speed) var(--ease); } .ds-switch input:checked + .ds-switch-ui { background: var(--paper-green); } .ds-switch input:checked + .ds-switch-ui::before { transform: translateX(18px); } .ds-switch input:focus-visible + .ds-switch-ui { outline: var(--focus-ring); outline-offset: var(--focus-offset); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Lygia Pape, l'atelier de papier",
+    "overview": "LIGIA traite l'interface comme une construction de papier découpé : nette, physique et délibérée. Les surfaces claires portent l'information ; la profondeur découle d'une lumière stable plutôt que d'une illusion de volume. La composition reste frontalement 2D, structurée par une grille éditoriale, avec une présence matérielle visible dans les ombres, les creux et les contrôles.\n\nL'atmosphère est matérielle et précise. La typographie organise l'information avec une hiérarchie ferme, les couleurs soutiennent des rôles lisibles, et les composants répondent comme des objets d'atelier : tactiles, utilitaires et de précision. Le système privilégie la clarté d'un document de référence à l'effet décoratif.",
+    "keyCharacteristics": ["Papier minéral et surfaces blanches nettement séparées.", "Lumière haut-gauche, ombres portées bas-droite et creux cohérents.", "Grille éditoriale stricte, densité mesurée et alignements explicites.", "Typographie structurée, labels techniques et données monospace.", "Couleur employée comme repère de structure, de signal et d'état."],
+    "rules": [
+      { "name": "The Ink, Not Flat Rule", "body": "Les aplats vifs servent aux surfaces et aux repères ; le texte courant emploie l'encre sombre correspondante pour rester lisible sur papier et blanc.", "section": "colors" },
+      { "name": "The Signal Has a Job Rule", "body": "Bleu, jaune, orange, vert et rouge apparaissent pour structurer, sélectionner ou signaler un état ; ils ne remplissent pas l'écran sans raison fonctionnelle.", "section": "colors" },
+      { "name": "The Reading Order Rule", "body": "Chaque zone doit pouvoir être parcourue dans l'ordre : label ou index, titre, explication, puis valeur ou action.", "section": "typography" },
+      { "name": "The Shared Axis Rule", "body": "Un décalage ne sert jamais à décorer : les blocs importants doivent partager les lignes et colonnes de la grille, y compris lorsqu'ils changent de taille.", "section": "layout" },
+      { "name": "The One Light Rule", "body": "Toute ombre, portée ou interne, doit se déduire de la même lumière haut-gauche. Une ombre sans logique physique est une erreur de système.", "section": "elevation" },
+      { "name": "The Depth Is Structural Rule", "body": "Le relief sépare les plans et clarifie l'interaction ; il n'est pas un ornement autonome.", "section": "elevation" },
+      { "name": "The Contained Corner Rule", "body": "Les coins assouplissent l'usage sans devenir un style : aucun grand rayon décoratif ne remplace la structure ou la profondeur.", "section": "shapes" }
+    ],
+    "dos": ["Do lire AGENTS.md et utiliser les alias sémantiques avant de créer une nouvelle valeur de couleur, espace, rayon ou profondeur.", "Do utiliser la grille de 12 colonnes et l'échelle de 4 px avant d'introduire une mesure locale.", "Do garder les grandes surfaces de papier blanches sans contour et les séparer par la lumière et l'ombre.", "Do employer une bordure complète et un focus visible pour chaque contrôle interactif.", "Do utiliser les encres sombres pour le texte sur fond clair et les aplats vifs pour les surfaces, repères et états.", "Do préserver l'impression lisible, la navigation clavier et la réduction de mouvement."],
+    "donts": ["Don't introduire de néomorphisme.", "Don't créer de perspective 3D ni de géométrie déformée pour simuler la profondeur.", "Don't utiliser de grands rayons décoratifs.", "Don't ajouter d'ombre sans origine lumineuse cohérente.", "Don't poser du texte courant directement sur un aplat trop vif."]
+  }
+}

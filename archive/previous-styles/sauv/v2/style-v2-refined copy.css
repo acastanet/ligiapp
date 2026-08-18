@@ -10,8 +10,8 @@
      utilities  → petites classes transverses
      responsive → media queries (940 / 620 / hover / motion / print)
 
-   Règle d'or : les valeurs structurelles sont mutualisées. Couleur, espacement,
-   rayon et profondeur viennent des tokens ; les mesures locales restent rares.
+   Règle d'or : aucune valeur brute dans les couches basses. Couleur, espacement,
+   graisse, rayon et ombre viennent toujours d'un token.
    ========================================================================== */
 
 @layer tokens, base, layout, components, utilities, responsive;
@@ -30,8 +30,6 @@
     --paper-white:  #FFFFFF;
     --paper-text:   #1A1A1A;
     --paper-bg:     #F4F4F0;
-    --paper-blue-hover: #003888;
-    --paper-dark-hover: #000000;
 
     /* --- Encres : versions lisibles des aplats, pour du TEXTE -------------
        Les aplats vifs ne passent pas en texte sur blanc (orange 2,6:1,
@@ -53,37 +51,12 @@
     --text-muted:     rgb(26 26 26 / .64);   /* 5,06:1 sur papier */
     --text-invert:    var(--paper-white);
     --mark-fill:      #808080; /* gris neutre 50 % du disque de marque, solide (pas de transparence) */
-    --line:           rgb(26 26 26 / .14);
-    --line-strong:    rgb(26 26 26 / .30);
-    --control-line:   #8A8A86; /* ≥ 3:1 sur blanc et papier pour les limites interactives */
+    --line:           rgb(26 26 26 / .12);
+    --line-strong:    rgb(26 26 26 / .28);
     --border:         1px solid var(--line);
-    --control-border: 1px solid var(--control-line);
     --focus-color:    var(--paper-blue);     /* 7,65:1 mini sur nos fonds */
     --focus-ring:     2px solid var(--focus-color);
     --focus-offset:   2px;
-
-    /* --- Alias sémantiques : point d'entrée des agents et nouvelles UI ----
-       Les tokens --paper-*, --ink-* et --shadow-* restent les primitives
-       canoniques. Pour toute nouvelle interface, préférer ces alias : ils
-       expriment l'intention sans modifier le rendu existant.                */
-    --color-action-primary:       var(--paper-blue);
-    --color-action-primary-hover: var(--paper-blue-hover);
-    --color-status-info:          var(--paper-blue);
-    --color-status-success:       var(--paper-green);
-    --color-status-warning:       var(--paper-orange);
-    --color-status-danger:        var(--paper-red);
-    --surface-page:               var(--paper-bg);
-    --surface-raised:             var(--paper-white);
-    --surface-recessed:           var(--paper-bg);
-    --text-primary:               var(--paper-text);
-    --text-secondary:             var(--text-muted);
-    --text-on-action:             var(--paper-white);
-    --text-status-success:        var(--ink-green);
-    --text-status-warning:        var(--ink-orange);
-    --text-status-danger:         var(--ink-red);
-    --border-subtle:              var(--border);
-    --border-interactive:         var(--control-border);
-    --focus-outline:              var(--focus-ring);
 
     /* --- Espacement : échelle de 4 px ------------------------------------- */
     --sp-1: 4px;
@@ -96,18 +69,6 @@
     --sp-8: 40px;
     --sp-9: 48px;
     --sp-10: 64px;
-
-    /* Échelle sémantique : préférée dans les nouvelles compositions. */
-    --space-1: var(--sp-1);
-    --space-2: var(--sp-2);
-    --space-3: var(--sp-3);
-    --space-4: var(--sp-4);
-    --space-5: var(--sp-5);
-    --space-6: var(--sp-6);
-    --space-7: var(--sp-7);
-    --space-8: var(--sp-8);
-    --space-9: var(--sp-9);
-    --space-10: var(--sp-10);
 
     /* --- Typographie ------------------------------------------------------ */
     --font-sans:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -124,38 +85,29 @@
     --tracking-label: .12em;
     --tracking-tight: -.03em;
 
-    --font-body:  var(--font-sans);
-    --font-title: var(--font-display);
-    --font-data:  var(--font-mono);
-
     /* --- Rayons ----------------------------------------------------------- */
     --radius-xs: 4px;
     --radius-sm: 8px;
-    --radius-md: 10px;
-    --radius-lg: 12px;
-    --radius-xl: 18px; /* modales et objets réellement exceptionnels */
-
-    --radius-control: var(--radius-sm);
-    --radius-surface: var(--radius-lg);
+    --radius-md: 12px;
+    --radius-lg: 18px;
 
     /* --- Profondeur -------------------------------------------------------
        Lumière haut-gauche : chaque niveau combine une ombre de contact serrée
        et une ombre ambiante large, toutes deux teintées à l'encre du système
        (et non au bleu ardoise), plus une crête intérieure côté lumière.     */
     --shadow-color: 26 26 26;
-    --shadow-intensity: 1;
-    --shadow-blur-scale: 1;
-    /* Ombres strictes papier découpé : aucun reflet blanc inset (pas de néomorphisme).
-       Lumière haut-gauche → portée unique bas-droite, deux couches (contact + ambiance). */
     --shadow-1:
-      2px 3px calc(6px * var(--shadow-blur-scale))   rgb(var(--shadow-color) / calc(0.14 * var(--shadow-intensity))),
-      8px 10px calc(16px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.22 * var(--shadow-intensity)));
+      2px 3px 6px   rgb(var(--shadow-color) / .14),
+      8px 10px 16px rgb(var(--shadow-color) / .22),
+      inset 1px 1px 0 rgb(255 255 255 / .65);
     --shadow-2:
-      3px 5px calc(9px * var(--shadow-blur-scale))    rgb(var(--shadow-color) / calc(0.16 * var(--shadow-intensity))),
-      14px 18px calc(26px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.26 * var(--shadow-intensity)));
+      3px 5px 9px    rgb(var(--shadow-color) / .16),
+      14px 18px 26px rgb(var(--shadow-color) / .26),
+      inset 1px 1px 0 rgb(255 255 255 / .70);
     --shadow-3:
-      5px 7px calc(12px * var(--shadow-blur-scale))   rgb(var(--shadow-color) / calc(0.18 * var(--shadow-intensity))),
-      20px 26px calc(36px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.30 * var(--shadow-intensity)));
+      5px 7px 12px   rgb(var(--shadow-color) / .18),
+      20px 26px 36px rgb(var(--shadow-color) / .30),
+      inset 1px 1px 0 rgb(255 255 255 / .72);
     /* Creux : la matière plonge dans le papier au lieu de s'en détacher, même
        lumière haut-gauche. Dans une cavité, c'est le bord haut-gauche qui
        porte son ombre À L'INTÉRIEUR — le sombre va donc en haut-gauche et la
@@ -165,27 +117,21 @@
        la crête claire en négatif. Même structure que shadow-1/2/3 : contact
        serré, ambiante large, crête côté lumière.                            */
     --shadow-creux-1:
-      inset 1px 2px calc(4px * var(--shadow-blur-scale))  rgb(var(--shadow-color) / calc(0.14 * var(--shadow-intensity))),
-      inset 4px 6px calc(10px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.09 * var(--shadow-intensity))),
+      inset 1px 2px 4px  rgb(var(--shadow-color) / .14),
+      inset 4px 6px 10px rgb(var(--shadow-color) / .09),
       inset -1px -1px 0 rgb(255 255 255 / .70);
     --shadow-creux-2:
-      inset 2px 3px calc(6px * var(--shadow-blur-scale))   rgb(var(--shadow-color) / calc(0.18 * var(--shadow-intensity))),
-      inset 7px 10px calc(16px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.12 * var(--shadow-intensity))),
+      inset 2px 3px 6px   rgb(var(--shadow-color) / .18),
+      inset 7px 10px 16px rgb(var(--shadow-color) / .12),
       inset -1px -2px 0 rgb(255 255 255 / .75);
     --shadow-creux-3:
-      inset 3px 5px calc(9px * var(--shadow-blur-scale))    rgb(var(--shadow-color) / calc(0.22 * var(--shadow-intensity))),
-      inset 12px 16px calc(24px * var(--shadow-blur-scale)) rgb(var(--shadow-color) / calc(0.16 * var(--shadow-intensity))),
+      inset 3px 5px 9px    rgb(var(--shadow-color) / .22),
+      inset 12px 16px 24px rgb(var(--shadow-color) / .16),
       inset -2px -3px 0 rgb(255 255 255 / .85);
     --shadow-pressed:
       1px 2px 4px rgb(var(--shadow-color) / .14),
       inset 0 2px 4px rgb(var(--shadow-color) / .08);
     --shadow-inset-field: inset 1px 2px 4px rgb(var(--shadow-color) / .05);
-
-    --elevation-surface: var(--shadow-1);
-    --elevation-hover:   var(--shadow-2);
-    --elevation-prominent: var(--shadow-3);
-    --elevation-recessed: var(--shadow-creux-1);
-    --elevation-pressed:  var(--shadow-pressed);
 
     /* --- Structure de page ------------------------------------------------ */
     --container: 1180px;
@@ -197,7 +143,6 @@
     /* --- Mouvement -------------------------------------------------------- */
     --ease: cubic-bezier(.2, .8, .2, 1);
     --speed: .16s;
-    --motion-standard: var(--speed) var(--ease);
   }
 }
 
@@ -205,43 +150,20 @@
    BASE
    ========================================================================== */
 @layer base {
-  *, *::before, *::after { box-sizing: border-box }
+  * { box-sizing: border-box }
 
   html {
-    scrollbar-color: var(--control-line) var(--surface-sunken);
-    scrollbar-width: thin;
+    scroll-behavior: smooth;
   }
-
-  /* Ascenseur habillé aux couleurs du papier plutôt que le gris système par
-     défaut, qui jurait avec le fond et le header translucide. */
-  ::-webkit-scrollbar { width: 12px; height: 12px }
-  ::-webkit-scrollbar-track { background: var(--surface-sunken) }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--control-line);
-    border-radius: var(--radius-sm);
-    border: 3px solid var(--surface-sunken);
-  }
-  ::-webkit-scrollbar-thumb:hover { background-color: var(--text) }
-  ::-webkit-scrollbar-corner { background: var(--surface-sunken) }
 
   body {
     margin: 0;
-    height: 100dvh;
-    overflow: hidden;
+    min-width: 320px;
     background: var(--surface-sunken);
     color: var(--text);
     font-family: var(--font-sans);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-  }
-
-  /* Le menu reste fixe hors du flux ; toute la matière défile dans ce
-     conteneur dédié, si bien que l'ascenseur ne recouvre jamais l'en-tête. */
-  .scroll-pane {
-    height: calc(100dvh - var(--header-h));
-    margin-top: var(--header-h);
-    overflow-y: auto;
-    scroll-behavior: smooth;
   }
 
   /* Grain papier : tuilé à taille fixe (et non étiré au viewport), pour que
@@ -272,9 +194,9 @@
   h1 {
     font-family: var(--font-display);
     font-size: clamp(3.2rem, 7.2vw, 6.5rem);
-    line-height: 1.02;
-    letter-spacing: -.05em;
-    max-width: 11ch;
+    line-height: .92;
+    letter-spacing: -.06em;
+    max-width: 10ch;
     margin-bottom: var(--sp-6);
   }
   h1 em { font-style: normal; color: var(--ink-blue) }
@@ -293,12 +215,11 @@
   main:focus,
   main:focus-visible { outline: none }
 
-  /* Le header est désormais fixe hors du flux : .scroll-pane commence déjà
-     sous lui, il ne reste qu'à respirer un peu au-dessus de la cible. */
+  /* Les ancres du menu tombent sous le header collant sans cette marge. */
   :target,
   section[id],
   [id]:is(section, main, article) {
-    scroll-margin-top: var(--sp-4);
+    scroll-margin-top: calc(var(--header-h) + var(--sp-4));
   }
 }
 
@@ -352,11 +273,10 @@
 
   .two-col {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: var(--sp-5);
     margin-top: var(--sp-5);
   }
-  .two-col > * { min-width: 0 }
 
   .component-stack {
     display: grid;
@@ -390,27 +310,9 @@
   /* --- Surface papier ---------------------------------------------------- */
   .paper {
     background: var(--surface);
-    border: none;
+    border: var(--border);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-1);
-  }
-
-  /* Surface interactive (cliquable, avec affordance de survol) */
-  .paper-interactive {
-    cursor: pointer;
-    transition:
-      transform var(--speed) var(--ease),
-      box-shadow var(--speed) var(--ease);
-  }
-  @media (hover: hover) {
-    .paper-interactive:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-2);
-    }
-  }
-  .paper-interactive:active {
-    transform: translate(1px, 2px);
-    box-shadow: var(--shadow-pressed);
+    box-shadow: var(--shadow-2);
   }
 
   /* --- Lien d'évitement --------------------------------------------------- */
@@ -430,10 +332,8 @@
 
   /* --- En-tête ------------------------------------------------------------ */
   .site-header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 50;
     background: rgb(244 244 240 / .9);
     backdrop-filter: blur(14px);
@@ -663,44 +563,38 @@
   .brand-mark--focus-3 i:nth-child(4) { background: var(--paper-orange); left: 31%;   top: 63.8% }
   .brand-mark--focus-3 i:nth-child(5) { background: var(--mark-fill);    left: 39.5%; top: 35.8% }
 
-  /* Animé — boucle continue uniquement centripète : chaque point part de
-     l'extérieur de la marque et converge vers le centre en passant par le
-     cercle de l'anneau (sens décrit dans la légende), puis la boucle
-     reprend directement à l'extérieur — pas de « alternate », l'itération
-     suivante recommence à 0% sans repasser par un mouvement centrifuge
-     visible. Une pose d'environ 1 s est posée à chaque extrémité (extérieur
-     et centre) ; le palier intermédiaire sur l'anneau reste bref pour
-     garder du rythme. */
-  .brand-mark--focus-live i:nth-child(1) { background: var(--paper-yellow); animation: brand-focus-1 5.5s var(--ease) -0.16s infinite }
-  .brand-mark--focus-live i:nth-child(2) { background: var(--paper-blue);   animation: brand-focus-2 5.5s var(--ease) -0.10s infinite }
-  .brand-mark--focus-live i:nth-child(3) { background: var(--paper-green);  animation: brand-focus-3 5.5s var(--ease) -0.05s infinite }
-  .brand-mark--focus-live i:nth-child(4) { background: var(--paper-orange); animation: brand-focus-4 5.5s var(--ease)  0.05s infinite }
-  .brand-mark--focus-live i:nth-child(5) { background: var(--mark-fill);    animation: brand-focus-5 5.5s var(--ease)  0s    infinite }
+  /* Animé — boucle continue fluide avec aller-retour : converge vers le cœur puis redéploie.
+     L'échelonnement temporel et les plateaux de pose mettent en valeur chaque palier. */
+  .brand-mark--focus-live i:nth-child(1) { background: var(--paper-yellow); animation: brand-focus-1 5.5s var(--ease) -0.16s infinite alternate }
+  .brand-mark--focus-live i:nth-child(2) { background: var(--paper-blue);   animation: brand-focus-2 5.5s var(--ease) -0.10s infinite alternate }
+  .brand-mark--focus-live i:nth-child(3) { background: var(--paper-green);  animation: brand-focus-3 5.5s var(--ease) -0.05s infinite alternate }
+  .brand-mark--focus-live i:nth-child(4) { background: var(--paper-orange); animation: brand-focus-4 5.5s var(--ease)  0.05s infinite alternate }
+  .brand-mark--focus-live i:nth-child(5) { background: var(--mark-fill);    animation: brand-focus-5 5.5s var(--ease)  0s    infinite alternate }
 
   @keyframes brand-focus-1 {
-    0%, 18%   { left: 92%;   top: -58.3% }
-    46%, 54%  { left: 72%;   top: -23.6% }
-    82%, 100% { left: 49%;   top: 16.2%  }
+    0%, 10%   { left: 92%;   top: -58.3% }
+    45%, 55%  { left: 72%;   top: -23.6% }
+    90%, 100% { left: 49%;   top: 16.2%  }
   }
   @keyframes brand-focus-2 {
-    0%, 18%   { left: -70%;  top: 40%    }
-    46%, 54%  { left: -30%;  top: 40%    }
-    82%, 100% { left: 15%;   top: 40%    }
+    0%, 10%   { left: -70%;  top: 40%    }
+    45%, 55%  { left: -30%;  top: 40%    }
+    90%, 100% { left: 15%;   top: 40%    }
   }
   @keyframes brand-focus-3 {
-    0%, 18%   { left: 96.5%; top: 136.8% }
-    46%, 54%  { left: 76.5%; top: 102.1% }
-    82%, 100% { left: 54%;   top: 63.2%  }
+    0%, 10%   { left: 96.5%; top: 136.8% }
+    45%, 55%  { left: 76.5%; top: 102.1% }
+    90%, 100% { left: 54%;   top: 63.2%  }
   }
   @keyframes brand-focus-4 {
-    0%, 18%   { left: -12%;  top: 138.3% }
-    46%, 54%  { left: 8%;    top: 103.6% }
-    82%, 100% { left: 31%;   top: 63.8%  }
+    0%, 10%   { left: -12%;  top: 138.3% }
+    45%, 55%  { left: 8%;    top: 103.6% }
+    90%, 100% { left: 31%;   top: 63.8%  }
   }
   @keyframes brand-focus-5 {
-    0%, 18%   { left: 9.5%;  top: -16.1% }
-    46%, 54%  { left: 32%;   top: 22.9%  }
-    82%, 100% { left: 39.5%; top: 35.8%  }
+    0%, 10%   { left: 9.5%;  top: -16.1% }
+    45%, 55%  { left: 32%;   top: 22.9%  }
+    90%, 100% { left: 39.5%; top: 35.8%  }
   }
 
   .brand-copy {
@@ -794,7 +688,6 @@
     justify-content: space-between;
     overflow: hidden;
     position: relative;
-    box-shadow: var(--shadow-2);
   }
   .board-head {
     display: flex;
@@ -843,7 +736,7 @@
     gap: var(--sp-2);
     min-height: 44px;
     padding: var(--sp-3) var(--sp-4);
-    border: var(--control-border);
+    border: var(--border);
     border-radius: var(--radius-sm);
     background: var(--surface);
     color: var(--text);
@@ -855,63 +748,15 @@
     transition:
       transform .15s var(--ease),
       box-shadow .15s var(--ease),
-      background .15s var(--ease),
-      border-color .15s var(--ease);
+      background .15s var(--ease);
   }
   .btn:active {
     transform: translate(2px, 3px);
     box-shadow: var(--shadow-pressed);
   }
-
-  /* Boutons pleins (Actions principales / Strong CTA) */
-  .btn-solid {
-    background: var(--paper-blue);
-    color: var(--text-invert);
-    border-color: var(--paper-blue);
-    box-shadow: var(--shadow-2);
-  }
-  @media (hover: hover) {
-    .btn-solid:hover {
-      background: var(--paper-blue-hover);
-      border-color: var(--paper-blue-hover);
-      color: var(--text-invert);
-    }
-  }
-  .btn-solid-accent {
-    background: var(--paper-orange);
-    color: var(--text);
-    border-color: var(--paper-orange);
-    box-shadow: var(--shadow-1);
-  }
-  .btn-solid-success {
-    background: var(--paper-green);
-    color: var(--text);
-    border-color: var(--paper-green);
-    box-shadow: var(--shadow-1);
-  }
-  .btn-solid-danger {
-    background: var(--paper-red);
-    color: var(--ink-on-red);
-    border-color: var(--paper-red);
-    box-shadow: var(--shadow-1);
-  }
-  .btn-solid-dark {
-    background: var(--paper-text);
-    color: var(--text-invert);
-    border-color: var(--paper-text);
-    box-shadow: var(--shadow-1);
-  }
-  @media (hover: hover) {
-    .btn-solid-dark:hover {
-      background: var(--paper-dark-hover);
-      border-color: var(--paper-dark-hover);
-      color: var(--text-invert);
-    }
-  }
-
-  /* Boutons contours (Actions secondaires / Outline) */
+  /* Bordure à l'aplat vif, libellé à l'encre lisible. */
   .btn-primary { border-color: var(--paper-blue);   color: var(--ink-blue) }
-  .btn-accent  { border-color: var(--ink-orange);   color: var(--ink-orange) }
+  .btn-accent  { border-color: var(--paper-orange); color: var(--ink-orange) }
   .btn-success { border-color: var(--paper-green);  color: var(--ink-green) }
   .btn-danger  { border-color: var(--paper-red);    color: var(--ink-red) }
 
@@ -952,50 +797,19 @@
     margin-bottom: 0;
   }
 
-  /* --- Palette & Swatches -------------------------------------------------- */
+  /* --- Palette ------------------------------------------------------------- */
   .swatch {
-    width: 100%;
     min-height: 160px;
     padding: var(--sp-4);
-    border: none;
+    border: var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-1);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    /* Encre par défaut ; chaque aplat redéfinit --swatch-ink avec une valeur
+       mesurée ≥ 4,5:1 sur son propre fond. Aucune opacité sur le texte. */
     color: var(--swatch-ink, var(--text));
-    text-align: left;
-    appearance: none;
-    cursor: pointer;
-    position: relative;
-    user-select: none;
-    transition: transform .15s var(--ease), box-shadow .15s var(--ease);
-  }
-  @media (hover: hover) {
-    .swatch:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-2);
-    }
-  }
-  .swatch:active {
-    transform: scale(.98);
-  }
-  .swatch::after {
-    content: "Copier";
-    position: absolute;
-    top: var(--sp-3);
-    right: var(--sp-3);
-    font-size: var(--text-2xs);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity .15s var(--ease);
-  }
-  @media (hover: hover) {
-    .swatch:hover::after {
-      opacity: .75;
-    }
   }
   .swatch span {
     font-size: var(--text-2xs);
@@ -1058,7 +872,7 @@
   .elevation-card {
     min-height: 150px;
     background: var(--surface);
-    border: none;
+    border: var(--border);
     border-radius: var(--radius-md);
     padding: var(--sp-4);
     display: flex;
@@ -1086,7 +900,7 @@
   .creux-card {
     min-height: 150px;
     background: var(--surface-sunken);
-    border: none;
+    border: var(--border);
     border-radius: var(--radius-md);
     padding: var(--sp-4);
     display: flex;
@@ -1136,18 +950,13 @@
   /* Fond papier obligatoire : sur le blanc du panneau, les variantes en disque
      blanc n'auraient plus de contour lisible. */
   .brand-tile {
-    width: 100%;
     background: var(--surface-sunken);
-    border: none;
-    box-shadow: var(--shadow-creux-1);
+    border: var(--border);
     border-radius: var(--radius-md);
     padding: var(--sp-4);
     display: flex;
     flex-direction: column;
     gap: var(--sp-1);
-    color: var(--text);
-    text-align: left;
-    appearance: none;
   }
   .brand-tile .brand-mark {
     --mark-size: 56px;
@@ -1177,10 +986,8 @@
     padding: var(--sp-9) 0 var(--sp-6);
   }
   .focus-tile {
-    width: 100%;
     background: var(--surface-sunken);
-    border: none;
-    box-shadow: var(--shadow-creux-1);
+    border: var(--border);
     border-radius: var(--radius-md);
     padding: var(--sp-4);
     display: flex;
@@ -1188,8 +995,6 @@
     align-items: center;
     text-align: center;
     gap: var(--sp-1);
-    color: var(--text);
-    appearance: none;
   }
   .focus-tile .brand-mark {
     --mark-size: 42px;
@@ -1224,8 +1029,7 @@
   }
   .component-demo {
     background: var(--surface-sunken);
-    border: none;
-    box-shadow: var(--shadow-creux-1);
+    border: var(--border);
     border-radius: var(--radius-md);
     padding: var(--sp-4);
   }
@@ -1237,21 +1041,6 @@
     gap: var(--sp-2);
     align-items: center;
   }
-  .component-toolbar,
-  .status-row {
-    margin-top: var(--sp-4);
-    border-top: var(--border);
-    padding-top: var(--sp-3);
-  }
-  .component-toolbar {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .dialog-demo {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
 
   /* --- Champs -------------------------------------------------------------- */
   .control-grid {
@@ -1260,12 +1049,6 @@
     gap: var(--sp-4);
   }
   .field { display: grid; gap: var(--sp-2) }
-  .field-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  .field-head > span,
   .field > span,
   .range-head,
   .choice-group legend {
@@ -1273,52 +1056,19 @@
     font-weight: 700;
     color: var(--text-muted);
   }
-  .field-req {
-    font-size: var(--text-2xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    color: var(--ink-blue);
-    background: rgb(0 71 171 / .08);
-    padding: 1px 6px;
-    border-radius: var(--radius-xs);
-  }
   .field :is(input:not([type=range]), select, textarea) {
     width: 100%;
-    border: var(--control-border);
+    border: var(--border);
     border-radius: var(--radius-sm);
     background: var(--surface);
     color: var(--text);
     padding: var(--sp-3);
     box-shadow: var(--shadow-inset-field);
-    transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease);
+    transition: border-color var(--speed) var(--ease);
   }
   /* La bordure change aussi au focus : l'anneau seul ne suffit pas à
      désigner le champ actif dans une grille de champs identiques. */
   .field :is(input, select, textarea):focus-visible { border-color: var(--focus-color) }
-
-  /* État d'erreur / validation */
-  .field.has-error :is(input, select, textarea) {
-    border-color: var(--paper-red);
-    background: rgb(230 57 70 / .03);
-  }
-  .field-error-msg {
-    font-size: var(--text-xs);
-    color: var(--ink-red);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: var(--sp-1);
-    margin-top: -2px;
-  }
-
-  /* État désactivé */
-  .field :is(input, select, textarea):disabled {
-    opacity: .6;
-    background: rgb(26 26 26 / .05);
-    cursor: not-allowed;
-  }
-
   .field-wide { grid-column: 1 / -1 }
 
   .choice-group {
@@ -1352,19 +1102,19 @@
   input[type=range]::-webkit-slider-runnable-track {
     height: var(--sp-2);
     border-radius: var(--radius-xs);
-    background: var(--control-line);
+    background: rgb(26 26 26 / .13);
   }
   input[type=range]::-moz-range-track {
     height: var(--sp-2);
     border-radius: var(--radius-xs);
-    background: var(--control-line);
+    background: rgb(26 26 26 / .13);
   }
   input[type=range]::-webkit-slider-thumb {
     appearance: none;
     width: 22px;
     height: 22px;
     margin-top: -7px;
-    border: var(--control-border);
+    border: var(--border);
     border-radius: var(--radius-sm);
     background: var(--surface);
     box-shadow: var(--shadow-1);
@@ -1373,7 +1123,7 @@
   input[type=range]::-moz-range-thumb {
     width: 22px;
     height: 22px;
-    border: var(--control-border);
+    border: var(--border);
     border-radius: var(--radius-sm);
     background: var(--surface);
     box-shadow: var(--shadow-1);
@@ -1401,12 +1151,9 @@
     width: 42px;
     height: var(--sp-6);
     padding: 3px;
-    /* Rayon = rayon du bouton (--radius-xs) + le padding qui l'entoure (3px),
-       pour que le rail reste concentrique au bouton mobile plutôt que codé
-       en dur sur un palier de rayon indépendant. */
-    border-radius: calc(var(--radius-xs) + 3px);
+    border-radius: var(--radius-md);
     background: rgb(26 26 26 / .16);
-    border: var(--control-border);
+    border: var(--border);
     transition: background var(--speed) var(--ease);
   }
   .switch-ui::before {
@@ -1416,7 +1163,7 @@
     height: var(--sp-4);
     border-radius: var(--radius-xs);
     background: var(--surface);
-    border: var(--control-border);
+    border: var(--border);
     box-shadow: 2px 3px 5px rgb(var(--shadow-color) / .18);
     transition: transform var(--speed) var(--ease);
   }
@@ -1447,9 +1194,7 @@
   .switch-sources .switch-ui {
     width: 48px;
     height: 28px;
-    /* Même formule concentrique que .switch-ui : le padding (3px, hérité) et
-       le bouton (--radius-xs) ne changent pas entre les deux tailles. */
-    border-radius: calc(var(--radius-xs) + 3px);
+    border-radius: var(--radius-sm);
   }
   .switch-sources .switch-ui::before {
     width: var(--sp-5);
@@ -1486,13 +1231,13 @@
   /* --- Messages ------------------------------------------------------------ */
   .message-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--sp-2);
   }
   .message {
     position: relative;
     padding: var(--sp-3) var(--sp-3) var(--sp-3) var(--sp-8);
-    border: none;
+    border: var(--border);
     border-radius: var(--radius-md);
     background: var(--surface);
     box-shadow: var(--shadow-1);
@@ -1511,7 +1256,6 @@
   }
   .message.success::before { background: var(--paper-green) }
   .message.warning::before { background: var(--paper-orange) }
-  .message.danger::before  { background: var(--paper-red) }
   .message strong { font-size: var(--text-sm) }
   .message span { font-size: var(--text-xs); color: var(--text-muted) }
 
@@ -1519,10 +1263,6 @@
   .metric-card {
     min-height: 190px;
     padding: var(--sp-5);
-    border: none;
-    border-radius: var(--radius-lg);
-    background: var(--surface);
-    box-shadow: var(--shadow-1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1541,25 +1281,6 @@
     letter-spacing: -.05em;
   }
   .metric-card strong span { font-size: .56em; margin-left: var(--sp-2); color: var(--text-muted) }
-
-  /* Mini jauge / barres de mesure */
-  .mini-gauge {
-    height: 6px;
-    border-radius: var(--radius-xs);
-    background: rgb(26 26 26 / .1);
-    box-shadow: var(--shadow-creux-1);
-    overflow: hidden;
-    margin-top: var(--sp-2);
-  }
-  .mini-gauge-fill {
-    height: 100%;
-    border-radius: var(--radius-xs);
-    background: var(--paper-blue);
-    transition: width .4s var(--ease);
-  }
-  .mini-gauge-fill.green  { background: var(--paper-green) }
-  .mini-gauge-fill.orange { background: var(--paper-orange) }
-
   .metric-meta {
     display: flex;
     justify-content: space-between;
@@ -1572,7 +1293,7 @@
   .metric-highlight {
     background: var(--paper-blue);
     color: var(--text-invert);
-    border: none;
+    border: var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-2);
   }
@@ -1586,12 +1307,6 @@
     border-collapse: collapse;
     font-size: var(--text-sm);
   }
-  tbody tr {
-    transition: background var(--speed) var(--ease);
-  }
-  tbody tr:hover {
-    background: rgb(26 26 26 / .035);
-  }
   th, td {
     padding: var(--sp-3) var(--sp-2);
     text-align: left;
@@ -1603,13 +1318,6 @@
     font-size: var(--text-2xs);
     color: var(--text-muted);
   }
-  th.text-right, td.text-right {
-    text-align: right;
-  }
-  .table-num {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-  }
   tbody tr:last-child td { border-bottom: 0 }
   .status {
     display: inline-flex;
@@ -1620,201 +1328,10 @@
     font-weight: 700;
     background: var(--surface);
   }
-  .status.ok      { color: var(--ink-green);  background: rgb(6 167 125 / .06); border-color: rgb(6 167 125 / .25) }
-  .status.info    { color: var(--ink-blue);   background: rgb(0 71 171 / .06); border-color: rgb(0 71 171 / .25) }
-  .status.warning { color: var(--ink-orange); background: rgb(247 127 0 / .08); border-color: rgb(247 127 0 / .30) }
-  .status.danger  { color: var(--ink-red);    background: rgb(230 57 70 / .08); border-color: rgb(230 57 70 / .30) }
-  .status.neutral { color: var(--text-muted); background: rgb(26 26 26 / .05); border-color: var(--line) }
+  .status.ok   { color: var(--ink-green) }
+  .status.info { color: var(--ink-blue) }
 
-  /* --- Kit de composition : API lisible, prête à réemployer -----------------
-     Ces classes sont volontairement peu nombreuses. Elles décrivent le rôle
-     du bloc ; couleurs, espacements et profondeur restent gouvernés par les
-     tokens sémantiques déclarés en tête de fichier.                           */
-  .kit-overview,
-  .recipe-grid {
-    display: grid;
-    gap: var(--space-6);
-  }
-  .kit-overview { grid-template-columns: 1.15fr .85fr; margin-bottom: var(--space-6) }
-  .recipe-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) }
-  .kit-contract,
-  .kit-rules,
-  .recipe-card { padding: var(--space-6) }
-  .kit-contract h3,
-  .kit-rules h3,
-  .recipe-head h3 {
-    margin: var(--space-5) 0 var(--space-3);
-    font-family: var(--font-title);
-    font-size: var(--text-xl);
-    letter-spacing: var(--tracking-tight);
-  }
-  .contract-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-4);
-    margin: 0;
-  }
-  .contract-list div { padding-top: var(--space-3); border-top: var(--border-subtle) }
-  .contract-list dt { font-family: var(--font-data); font-size: var(--text-xs); font-weight: 700; color: var(--text-status-info) }
-  .contract-list dd { margin: var(--space-1) 0 0; color: var(--text-secondary); font-size: var(--text-sm) }
-  .token-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5) }
-  .token-chip {
-    min-height: 34px;
-    padding: var(--space-2) var(--space-3);
-    border: var(--border-interactive);
-    border-radius: var(--radius-control);
-    background: var(--surface-raised);
-    color: var(--text-status-info);
-    font-family: var(--font-data);
-    font-size: var(--text-2xs);
-    font-weight: 700;
-    cursor: pointer;
-  }
-  @media (hover: hover) { .token-chip:hover { background: var(--surface-recessed) } }
-  .rules-list { display: grid; gap: var(--space-3); margin: var(--space-5) 0 0; padding: 0; list-style: none }
-  .rules-list li { position: relative; padding-left: var(--space-5); color: var(--text-secondary); font-size: var(--text-sm) }
-  .rules-list li::before { content: ""; position: absolute; top: .48em; left: 0; width: 8px; height: 8px; background: var(--color-action-primary); border-radius: var(--radius-xs) }
-  .recipe-card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4) }
-  .recipe-head { width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3) }
-  .recipe-head h3 { margin-bottom: 0 }
-  .recipe-card > p { margin: 0; color: var(--text-secondary); font-size: var(--text-sm) }
-  .recipe-code {
-    width: 100%;
-    min-height: 132px;
-    margin: 0;
-    padding: var(--space-4);
-    overflow-x: auto;
-    border-radius: var(--radius-sm);
-    background: var(--surface-recessed);
-    box-shadow: var(--elevation-recessed);
-    color: var(--text-primary);
-    font-family: var(--font-data);
-    font-size: var(--text-2xs);
-    line-height: 1.65;
-    white-space: pre;
-  }
-
-  /* Primitives composables exposées dans les recettes ci-dessus. */
-  .paper-card {
-    display: grid;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    border-radius: var(--radius-surface);
-    background: var(--surface-raised);
-    color: var(--text-primary);
-    box-shadow: var(--elevation-surface);
-  }
-  .paper-card h3 { margin: 0; font-family: var(--font-title); letter-spacing: var(--tracking-tight) }
-  .paper-card p { margin: 0; color: var(--text-secondary); font-size: var(--text-sm) }
-  .paper-control {
-    min-height: 40px;
-    justify-self: start;
-    padding: var(--space-2) var(--space-4);
-    border: var(--border-interactive);
-    border-radius: var(--radius-control);
-    background: var(--surface-raised);
-    color: var(--text-status-info);
-    font-size: var(--text-sm);
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform var(--motion-standard), box-shadow var(--motion-standard), background var(--motion-standard);
-  }
-  @media (hover: hover) { .paper-control:hover { transform: translate(-1px, -2px); box-shadow: var(--elevation-hover); background: var(--surface-recessed) } }
-  .paper-field { display: grid; gap: var(--space-2); color: var(--text-primary); font-size: var(--text-sm); font-weight: 700 }
-  .paper-field input {
-    min-height: 42px;
-    padding: var(--space-2) var(--space-3);
-    border: var(--border-interactive);
-    border-radius: var(--radius-control);
-    background: var(--surface-raised);
-    color: var(--text-primary);
-  }
-  .paper-field small { color: var(--text-secondary); font-size: var(--text-xs); font-weight: 400 }
-  .paper-field input:focus-visible { border-color: var(--focus-color); outline: var(--focus-outline); outline-offset: var(--focus-offset) }
-  .paper-stage {
-    position: relative;
-    min-height: 320px;
-    overflow: hidden;
-    border-radius: var(--radius-surface);
-    background: var(--surface-recessed);
-    box-shadow: var(--elevation-recessed);
-  }
-  .paper-layer { position: absolute; border-radius: var(--radius-surface); background: var(--color-action-primary) }
-  .paper-layer--1 { right: 8%; bottom: 10%; width: 58%; height: 40%; box-shadow: var(--elevation-surface) }
-  .paper-layer--2 { top: 12%; left: 12%; width: 34%; height: 58%; background: var(--color-status-warning); box-shadow: var(--elevation-hover) }
-  .paper-layer--3 { top: 20%; right: 14%; width: 22%; height: 22%; background: var(--color-status-danger); box-shadow: var(--elevation-prominent) }
-  .paper-stage > .paper-card { position: absolute; z-index: 1; top: var(--space-6); left: var(--space-6); max-width: min(78%, 340px) }
-
-  /* --- Modale papier native (HTML5 dialog) ----------------------------------- */
-  dialog.paper-dialog {
-    border: none;
-    border-radius: var(--radius-xl);
-    background: var(--surface);
-    box-shadow: var(--shadow-3);
-    padding: clamp(var(--sp-6), 4vw, var(--sp-8));
-    max-width: 500px;
-    width: calc(100% - 2 * var(--sp-4));
-    color: var(--text);
-    margin: auto;
-  }
-  dialog.paper-dialog::backdrop {
-    background: rgb(26 26 26 / .42);
-    backdrop-filter: blur(5px);
-  }
-  .dialog-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--sp-4);
-    border-bottom: var(--border);
-    padding-bottom: var(--sp-3);
-  }
-  .dialog-head h3 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 1.45rem;
-    letter-spacing: var(--tracking-tight);
-  }
-  .dialog-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: var(--sp-2);
-    margin-top: var(--sp-6);
-  }
-
-  /* --- Toast de notification ------------------------------------------------ */
-  .toast-notice {
-    position: fixed;
-    bottom: var(--sp-6);
-    right: var(--sp-6);
-    z-index: 200;
-    background: var(--paper-text);
-    color: var(--text-invert);
-    padding: var(--sp-3) var(--sp-5);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    box-shadow: var(--shadow-3);
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    transform: translateY(20px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform .22s var(--ease), opacity .22s var(--ease);
-  }
-  .toast-notice.is-visible {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .toast-notice .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--paper-green);
-  }
-
-  /* --- Règle éditoriale (panneau « l’ombre découpe le papier ») ------------- */
+  /* --- Règle éditoriale (panneau « une bordure, quatre côtés ») ------------- */
   .rule-title {
     font-family: var(--font-display);
     font-size: 1.8rem;
@@ -1829,11 +1346,6 @@
     position: relative;
     min-height: 360px;
     padding: var(--grid-demo-pad);
-    background: var(--surface-sunken);
-    border: none;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-creux-2);
-    overflow: hidden;
   }
   /* Les colonnes dessinées SONT les 12 colonnes réelles du bloc : même gap,
      même largeur de piste. L'ancien fond à pas fixe de 90 px ne tombait
@@ -1851,13 +1363,12 @@
       transparent          calc((100% + var(--grid-gap)) / var(--grid-cols))
     );
   }
-  /* Coins droits : le papier découpé n'a pas de coins arrondis.            */
   .grid-block {
     position: relative;
-    border: none;
-    border-radius: 0;
+    border: var(--border);
+    border-radius: var(--radius-md);
     background: var(--surface);
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--shadow-1);
     padding: var(--sp-5);
   }
   .grid-block h3 {
@@ -1990,11 +1501,9 @@
     .brand-grid,
     .focus-row,
     .metric-grid { grid-template-columns: repeat(2, 1fr) }
-    .kit-overview,
-    .recipe-grid { grid-template-columns: minmax(0, 1fr) }
     .two-col,
     .control-grid,
-    .message-grid { grid-template-columns: minmax(0, 1fr) }
+    .message-grid { grid-template-columns: 1fr }
 
     /* Le décalage d'élévation casserait l'alignement en pile. */
     .e2, .e3 { transform: none }
@@ -2011,19 +1520,12 @@
     .focus-row,
     .metric-grid,
     .elevation-row,
-    .creux-row,
-    .contract-list { grid-template-columns: 1fr }
+    .creux-row { grid-template-columns: 1fr }
     /* Trois paliers emboîtés : le padding nominal ne laisserait plus de
        largeur utile au fond de la pile. */
     .depth-layer { padding: var(--sp-4); gap: var(--sp-4) }
     .component-block { padding: var(--sp-5) }
     .component-demo { padding: var(--sp-3) }
-    .kit-contract,
-    .kit-rules,
-    .recipe-card { padding: var(--space-5) }
-    .recipe-head { flex-direction: column }
-    .paper-stage { min-height: 280px }
-    .paper-stage > .paper-card { top: var(--space-4); left: var(--space-4); max-width: calc(100% - 2 * var(--space-4)) }
     .button-matrix-row { align-items: stretch }
     .button-matrix-row .btn { flex: 1 1 140px }
     .footer-inner { align-items: flex-start; flex-direction: column }
@@ -2043,9 +1545,8 @@
 
   /* Document de référence : il doit rester lisible imprimé. */
   @media print {
-    body { height: auto; overflow: visible; background: var(--paper-white) }
+    body { background: var(--paper-white) }
     body::before { display: none }
-    .scroll-pane { height: auto; overflow: visible; margin-top: 0 }
     .site-header { position: static; background: none; backdrop-filter: none }
     .skip-link { display: none }
     .paper,

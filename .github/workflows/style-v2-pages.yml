@@ -7,6 +7,7 @@ on:
     paths:
       - style-v2-refined.html
       - style-v2-refined.css
+      - favicon.svg
       - .github/workflows/style-v2-pages.yml
   workflow_dispatch:
 
@@ -35,6 +36,7 @@ jobs:
           mkdir -p _site
           cp style-v2-refined.html _site/index.html
           cp style-v2-refined.css _site/style-v2-refined.css
+          cp favicon.svg _site/favicon.svg
           touch _site/.nojekyll
 
       - name: Configure GitHub Pages

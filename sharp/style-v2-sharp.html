@@ -4,14 +4,63 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="Lygia Pape, l’atelier de papier — système visuel HTML/CSS pour composer des interfaces matérielles, précises et accessibles.">
+  <meta name="description" content="LIGIA Sharp — variante nette et tendue du système visuel Lygia Pape : mêmes composants, rayons resserrés et ombres plus franches. Comparez en direct avec l’original.">
   <meta name="theme-color" content="#F4F4F0">
-  <title>Lygia Pape, l’atelier de papier — Référence CSS</title>
+  <title>LIGIA Sharp — variante nette (comparaison Original ↔ Sharp)</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=optional" rel="stylesheet">
-  <link rel="stylesheet" href="style-v2-refined.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Base LIGIA, non modifiée : source unique des composants. -->
+  <link rel="stylesheet" href="../style-v2-refined.css">
+  <!-- Couche de tokens Sharp : resserre rayons/ombres/bordures/tracking par-dessus la base. -->
+  <link rel="stylesheet" href="style-v2-sharp.css" id="sharp-stylesheet">
+  <style>
+    /* Chrome propre à cette page de comparaison — n'appartient ni à la base
+       ni à la variante Sharp, donc gardé hors des deux fichiers du système. */
+    .compare-bar {
+      position: sticky;
+      top: var(--header-h);
+      z-index: 40;
+      background: var(--surface-raised);
+      border-bottom: var(--border);
+    }
+    .compare-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding-top: var(--space-3);
+      padding-bottom: var(--space-3);
+    }
+    .compare-bar-copy {
+      margin: 0;
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    .compare-switch { gap: var(--space-3) }
+    .compare-switch-word {
+      font-family: var(--font-title);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: var(--tracking-tight);
+      color: var(--text-secondary);
+      transition: color var(--motion-standard), font-weight var(--motion-standard);
+    }
+    .compare-switch:has(input:checked) .compare-switch-word:last-child,
+    .compare-switch:not(:has(input:checked)) .compare-switch-word:first-child {
+      color: var(--color-action-primary);
+      font-weight: 800;
+    }
+    @media (max-width: 620px) {
+      .compare-bar { position: static }
+      .compare-bar-inner { justify-content: flex-start }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .compare-switch-word { transition: none }
+    }
+  </style>
 </head>
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -19,7 +68,7 @@
   <div class="container header-inner">
     <a class="brand" href="#top" aria-label="Lygia Pape, l’atelier de papier — accueil">
       <span class="brand-mark brand-mark--focus-2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <span class="brand-copy"><strong>LYGIA PAPE</strong><small>atelier / papier</small></span>
+      <span class="brand-copy"><strong>LYGIA PAPE</strong><small>atelier / papier — sharp</small></span>
     </a>
     <nav class="primary-nav" aria-label="Navigation principale">
       <a href="#fondations">Fondations</a><a href="#composants">Composants</a><a href="#donnees">Données</a><a href="#kit">Kit</a><a href="#grille">Grille</a>
@@ -27,15 +76,28 @@
     <a class="btn btn-small btn-solid" href="#composants">Inventaire</a>
   </div>
 </header>
-<div class="scroll-pane">
+
+<div class="compare-bar" role="region" aria-label="Comparaison Original et Sharp">
+  <div class="container compare-bar-inner">
+    <p class="compare-bar-copy">Même catalogue, deux réglages de tokens — <code>style-v2-refined.css</code> vs <code>style-v2-sharp.css</code>.</p>
+    <label class="switch compare-switch">
+      <span class="compare-switch-word">Original</span>
+      <input type="checkbox" id="sharp-toggle" checked aria-label="Afficher la variante Sharp plutôt que l’Original">
+      <span class="switch-ui" aria-hidden="true"></span>
+      <span class="compare-switch-word">Sharp</span>
+    </label>
+  </div>
+</div>
+<span id="compare-status" class="visually-hidden" role="status" aria-live="polite"></span>
+
 <main id="contenu" tabindex="-1">
   <section class="hero section" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow"><span class="status-dot"></span>Système visuel HTML5 / CSS</span>
-        <p class="kicker">Papier, couleur et rigueur éditoriale.</p>
-        <h1>Lygia Pape, <em>l’atelier de papier.</em></h1>
-        <p class="lede">Une version plus proche du langage original : aplats francs, IBM Plex Sans, lumière haut-gauche et surfaces blanches découpées par l’ombre. Les alignements sont stricts et les grands rayons restent contenus entre 8 et 12 px.</p>
+        <span class="eyebrow"><span class="status-dot"></span>Système visuel HTML5 / CSS · Variante Sharp</span>
+        <p class="kicker">Papier, couleur et rigueur éditoriale — resserrés.</p>
+        <h1>Lygia Pape, <em>l’atelier de papier.</em> <span class="status info">Sharp</span></h1>
+        <p class="lede">La variante Sharp du même système : aplats francs, IBM Plex Sans, lumière haut-gauche inchangée et grands rayons resserrés entre 5 et 7 px, portés par des ombres plus franches. Basculez l’interrupteur ci-dessus pour comparer avec l’Original.</p>
         <div class="hero-actions">
           <a class="btn btn-solid" href="#fondations">Explorer le système</a>
           <a class="btn" href="#composants">Voir les contrôles</a>
@@ -44,7 +106,7 @@
         <dl class="hero-facts"><div><dt>Fond</dt><dd>#F4F4F0</dd></div><div><dt>Texte</dt><dd>#1A1A1A</dd></div><div><dt>Grille</dt><dd>12 col.</dd></div><div><dt>Police</dt><dd>IBM Plex Sans</dd></div></dl>
       </div>
       <aside class="hero-board paper" aria-label="Aperçu du système">
-        <div class="board-head"><span class="label">SYSTEM / 02.1</span><span class="mono">2D · aligned</span></div>
+        <div class="board-head"><span class="label">SYSTEM / SHARP</span><span class="mono">2D · aligned</span></div>
         <div class="board-title">Clair.<br>Structuré.<br><span>Tactile.</span></div>
         <div class="board-rule"></div>
         <div class="board-samples" aria-hidden="true"><span class="sample"></span><span class="sample"></span><span class="sample"></span><span class="sample"></span><span class="sample"></span></div>
@@ -58,7 +120,7 @@
       <header class="section-heading"><span class="section-index">01</span><div><span class="eyebrow">Fondations</span><h2>Couleur, typo et profondeur.</h2><p>Les règles héritées du style original, resserrées pour une interface 2D cohérente. Activez une nuance pour copier son code.</p></div></header>
       <div class="palette-grid" role="group" aria-label="Palette à copier">
         <button type="button" class="swatch dark" data-copy="#1A1A1A" aria-label="Copier la couleur texte #1A1A1A" title="Cliquer pour copier #1A1A1A"><span>Texte</span><strong>#1A1A1A</strong><small>Encre mate</small></button>
-        <button type="button" class="swatch paper" data-copy="#F4F4F0" aria-label="Copier la couleur de fond #F4F4F0" title="Cliquer pour copier #F4F4F0"><span>Fond</span><strong>#F4F4F0</strong><small>Papier naturel</small></button>
+        <button type="button" class="swatch paper" data-copy="#F4F4F0" aria-label="Copier la couleur de fond #F4F4F0" title="Cliquer pour copier #F4F4F0"><span>Fond</span><strong>#F4F4F0</strong><small>Papier naturel, paillettes orange</small></button>
         <button type="button" class="swatch white" data-copy="#FFFFFF" aria-label="Copier la couleur de surface #FFFFFF" title="Cliquer pour copier #FFFFFF"><span>Surface</span><strong>#FFFFFF</strong><small>Cartouche blanc</small></button>
         <button type="button" class="swatch yellow" data-copy="#FFD600" aria-label="Copier la couleur signal #FFD600" title="Cliquer pour copier #FFD600"><span>Signal</span><strong>#FFD600</strong><small>Jaune</small></button>
         <button type="button" class="swatch blue" data-copy="#0047AB" aria-label="Copier la couleur structure #0047AB" title="Cliquer pour copier #0047AB"><span>Structure</span><strong>#0047AB</strong><small>Bleu cobalt</small></button>
@@ -75,7 +137,7 @@
         <article class="paper panel">
           <div class="panel-head"><span class="label">OMBRES</span><span class="mono">haut-gauche → bas-droit</span></div>
           <div class="elevation-row"><div class="elevation-card e1"><span class="mono">01</span><strong>Légère</strong><small>contrôle</small></div><div class="elevation-card e2"><span class="mono">02</span><strong>Standard</strong><small>carte</small></div><div class="elevation-card e3"><span class="mono">03</span><strong>Focus</strong><small>prioritaire</small></div></div>
-          <p class="note">Les ombres ont été renforcées légèrement par rapport à la première V2, sans atteindre l’effet diorama.</p>
+          <p class="note">En Sharp, l’intensité et le flou sont resserrés par rapport à l’original : moins de diffusion, plus de contact, sans changer la direction de la lumière.</p>
           <div class="panel-head panel-head-sub"><span class="label">PROFONDEUR</span><span class="mono">en creux</span></div>
           <div class="creux-row"><div class="creux-card creux-standard"><span class="mono">02</span><strong>Standard</strong><small>plongée</small></div><div class="creux-card creux-profond"><span class="mono">03</span><strong>Profond</strong><small>plongée</small></div></div>
           <p class="note">À l’opposé de l’élévation ci-dessus et des cartes superposées de la section 04, ces blocs plongent dans le papier — même règle de lumière haut-gauche, portée à l’envers.</p>
@@ -196,13 +258,13 @@
         </article>
 
         <article class="paper component-block">
-          <div class="component-title"><span class="label">RÉGLAGES</span><h3>Curseurs & variables</h3><p>Curseurs réactifs modifiant en direct les variables CSS globales de la page.</p></div>
+          <div class="component-title"><span class="label">RÉGLAGES</span><h3>Curseurs & variables</h3><p>Curseurs réactifs modifiant en direct les variables CSS globales de la page — réglés ici sur les valeurs par défaut Sharp.</p></div>
           <div class="component-demo">
             <div class="control-grid">
-              <label class="range-field"><span class="range-head"><span>Intensité d'ombre</span><output for="r1" aria-hidden="true">100 %</output></span><input id="r1" type="range" min="20" max="180" value="100" data-unit=" %" data-var="--shadow-intensity" data-scale="0.01"></label>
-              <label class="range-field"><span class="range-head"><span>Rayon de flou</span><output for="r2" aria-hidden="true">1.0x</output></span><input id="r2" type="range" min="5" max="25" value="10" data-unit="x" data-var="--shadow-blur-scale" data-scale="0.1" data-display-scale="0.1" data-decimals="1"></label>
+              <label class="range-field"><span class="range-head"><span>Intensité d'ombre</span><output for="r1" aria-hidden="true">135 %</output></span><input id="r1" type="range" min="20" max="180" value="135" data-unit=" %" data-var="--shadow-intensity" data-scale="0.01"></label>
+              <label class="range-field"><span class="range-head"><span>Rayon de flou</span><output for="r2" aria-hidden="true">0.6x</output></span><input id="r2" type="range" min="5" max="25" value="6" data-unit="x" data-var="--shadow-blur-scale" data-scale="0.1" data-display-scale="0.1" data-decimals="1"></label>
               <label class="range-field"><span class="range-head"><span>Espacement de grille</span><output for="r3" aria-hidden="true">24 px</output></span><input id="r3" type="range" min="12" max="48" value="24" data-unit=" px" data-var="--grid-gap" data-css-unit="px"></label>
-              <label class="range-field"><span class="range-head"><span>Rayon des grandes cartes</span><output for="r4" aria-hidden="true">12 px</output></span><input id="r4" type="range" min="8" max="12" value="12" data-unit=" px" data-var="--radius-lg" data-css-unit="px"></label>
+              <label class="range-field"><span class="range-head"><span>Rayon des grandes cartes</span><output for="r4" aria-hidden="true">7 px</output></span><input id="r4" type="range" min="4" max="12" value="7" data-unit=" px" data-var="--radius-lg" data-css-unit="px"></label>
             </div>
             <div class="component-toolbar">
               <button class="btn btn-small" id="reset-sliders-btn" type="button">↺ Réinitialiser les variables</button>
@@ -432,11 +494,10 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <strong>Lygia Pape — l’atelier de papier</strong>
+    <strong>Lygia Pape — l’atelier de papier · Sharp</strong>
     <span>HTML5 · CSS · kit de composition · profondeur par l’ombre · <img src="favicon.svg" width="16" height="16" alt="" style="vertical-align:-3px" aria-hidden="true"> <code>favicon.svg</code></span>
   </div>
 </footer>
-</div>
 
 <!-- Modale papier native -->
 <dialog id="demo-dialog" class="paper paper-dialog" aria-labelledby="dialog-title">
@@ -498,7 +559,7 @@ if (resetBtn) {
       input.value = input.defaultValue;
       input.dispatchEvent(new Event('input'));
     });
-    showToast('Variables réinitialisées aux valeurs nominales');
+    showToast('Variables réinitialisées aux valeurs par défaut Sharp');
   });
 }
 
@@ -588,6 +649,28 @@ if (demoModalBtn) demoModalBtn.addEventListener('click', openDialog);
 if (dialog) {
   dialog.addEventListener('click', function (e) {
     if (e.target === dialog) dialog.close();
+  });
+}
+
+// --- Interrupteur Original / Sharp -----------------------------------------
+var sharpToggle = document.getElementById('sharp-toggle');
+var sharpStylesheet = document.getElementById('sharp-stylesheet');
+var compareStatus = document.getElementById('compare-status');
+
+function applyCompareState(showSharp, announce) {
+  sharpStylesheet.disabled = !showSharp;
+  document.title = showSharp
+    ? 'LIGIA Sharp — variante nette (comparaison Original ↔ Sharp)'
+    : 'LIGIA — Original (aperçu depuis la comparaison Sharp)';
+  if (announce && compareStatus) {
+    compareStatus.textContent = 'Mode actif : ' + (showSharp ? 'Sharp' : 'Original');
+  }
+}
+
+if (sharpToggle && sharpStylesheet) {
+  applyCompareState(sharpToggle.checked, false);
+  sharpToggle.addEventListener('change', function () {
+    applyCompareState(sharpToggle.checked, true);
   });
 }
 </script>

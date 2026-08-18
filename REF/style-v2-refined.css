@@ -205,43 +205,19 @@
    BASE
    ========================================================================== */
 @layer base {
-  *, *::before, *::after { box-sizing: border-box }
+  * { box-sizing: border-box }
 
   html {
-    scrollbar-color: var(--control-line) var(--surface-sunken);
-    scrollbar-width: thin;
+    scroll-behavior: smooth;
   }
-
-  /* Ascenseur habillé aux couleurs du papier plutôt que le gris système par
-     défaut, qui jurait avec le fond et le header translucide. */
-  ::-webkit-scrollbar { width: 12px; height: 12px }
-  ::-webkit-scrollbar-track { background: var(--surface-sunken) }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--control-line);
-    border-radius: var(--radius-sm);
-    border: 3px solid var(--surface-sunken);
-  }
-  ::-webkit-scrollbar-thumb:hover { background-color: var(--text) }
-  ::-webkit-scrollbar-corner { background: var(--surface-sunken) }
 
   body {
     margin: 0;
-    height: 100dvh;
-    overflow: hidden;
     background: var(--surface-sunken);
     color: var(--text);
     font-family: var(--font-sans);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-  }
-
-  /* Le menu reste fixe hors du flux ; toute la matière défile dans ce
-     conteneur dédié, si bien que l'ascenseur ne recouvre jamais l'en-tête. */
-  .scroll-pane {
-    height: calc(100dvh - var(--header-h));
-    margin-top: var(--header-h);
-    overflow-y: auto;
-    scroll-behavior: smooth;
   }
 
   /* Grain papier : tuilé à taille fixe (et non étiré au viewport), pour que
@@ -293,12 +269,11 @@
   main:focus,
   main:focus-visible { outline: none }
 
-  /* Le header est désormais fixe hors du flux : .scroll-pane commence déjà
-     sous lui, il ne reste qu'à respirer un peu au-dessus de la cible. */
+  /* Les ancres du menu tombent sous le header collant sans cette marge. */
   :target,
   section[id],
   [id]:is(section, main, article) {
-    scroll-margin-top: var(--sp-4);
+    scroll-margin-top: calc(var(--header-h) + var(--sp-4));
   }
 }
 
@@ -430,10 +405,8 @@
 
   /* --- En-tête ------------------------------------------------------------ */
   .site-header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 50;
     background: rgb(244 244 240 / .9);
     backdrop-filter: blur(14px);
@@ -663,44 +636,38 @@
   .brand-mark--focus-3 i:nth-child(4) { background: var(--paper-orange); left: 31%;   top: 63.8% }
   .brand-mark--focus-3 i:nth-child(5) { background: var(--mark-fill);    left: 39.5%; top: 35.8% }
 
-  /* Animé — boucle continue uniquement centripète : chaque point part de
-     l'extérieur de la marque et converge vers le centre en passant par le
-     cercle de l'anneau (sens décrit dans la légende), puis la boucle
-     reprend directement à l'extérieur — pas de « alternate », l'itération
-     suivante recommence à 0% sans repasser par un mouvement centrifuge
-     visible. Une pose d'environ 1 s est posée à chaque extrémité (extérieur
-     et centre) ; le palier intermédiaire sur l'anneau reste bref pour
-     garder du rythme. */
-  .brand-mark--focus-live i:nth-child(1) { background: var(--paper-yellow); animation: brand-focus-1 5.5s var(--ease) -0.16s infinite }
-  .brand-mark--focus-live i:nth-child(2) { background: var(--paper-blue);   animation: brand-focus-2 5.5s var(--ease) -0.10s infinite }
-  .brand-mark--focus-live i:nth-child(3) { background: var(--paper-green);  animation: brand-focus-3 5.5s var(--ease) -0.05s infinite }
-  .brand-mark--focus-live i:nth-child(4) { background: var(--paper-orange); animation: brand-focus-4 5.5s var(--ease)  0.05s infinite }
-  .brand-mark--focus-live i:nth-child(5) { background: var(--mark-fill);    animation: brand-focus-5 5.5s var(--ease)  0s    infinite }
+  /* Animé — boucle continue fluide avec aller-retour : converge vers le cœur puis redéploie.
+     L'échelonnement temporel et les plateaux de pose mettent en valeur chaque palier. */
+  .brand-mark--focus-live i:nth-child(1) { background: var(--paper-yellow); animation: brand-focus-1 5.5s var(--ease) -0.16s infinite alternate }
+  .brand-mark--focus-live i:nth-child(2) { background: var(--paper-blue);   animation: brand-focus-2 5.5s var(--ease) -0.10s infinite alternate }
+  .brand-mark--focus-live i:nth-child(3) { background: var(--paper-green);  animation: brand-focus-3 5.5s var(--ease) -0.05s infinite alternate }
+  .brand-mark--focus-live i:nth-child(4) { background: var(--paper-orange); animation: brand-focus-4 5.5s var(--ease)  0.05s infinite alternate }
+  .brand-mark--focus-live i:nth-child(5) { background: var(--mark-fill);    animation: brand-focus-5 5.5s var(--ease)  0s    infinite alternate }
 
   @keyframes brand-focus-1 {
-    0%, 18%   { left: 92%;   top: -58.3% }
-    46%, 54%  { left: 72%;   top: -23.6% }
-    82%, 100% { left: 49%;   top: 16.2%  }
+    0%, 10%   { left: 92%;   top: -58.3% }
+    45%, 55%  { left: 72%;   top: -23.6% }
+    90%, 100% { left: 49%;   top: 16.2%  }
   }
   @keyframes brand-focus-2 {
-    0%, 18%   { left: -70%;  top: 40%    }
-    46%, 54%  { left: -30%;  top: 40%    }
-    82%, 100% { left: 15%;   top: 40%    }
+    0%, 10%   { left: -70%;  top: 40%    }
+    45%, 55%  { left: -30%;  top: 40%    }
+    90%, 100% { left: 15%;   top: 40%    }
   }
   @keyframes brand-focus-3 {
-    0%, 18%   { left: 96.5%; top: 136.8% }
-    46%, 54%  { left: 76.5%; top: 102.1% }
-    82%, 100% { left: 54%;   top: 63.2%  }
+    0%, 10%   { left: 96.5%; top: 136.8% }
+    45%, 55%  { left: 76.5%; top: 102.1% }
+    90%, 100% { left: 54%;   top: 63.2%  }
   }
   @keyframes brand-focus-4 {
-    0%, 18%   { left: -12%;  top: 138.3% }
-    46%, 54%  { left: 8%;    top: 103.6% }
-    82%, 100% { left: 31%;   top: 63.8%  }
+    0%, 10%   { left: -12%;  top: 138.3% }
+    45%, 55%  { left: 8%;    top: 103.6% }
+    90%, 100% { left: 31%;   top: 63.8%  }
   }
   @keyframes brand-focus-5 {
-    0%, 18%   { left: 9.5%;  top: -16.1% }
-    46%, 54%  { left: 32%;   top: 22.9%  }
-    82%, 100% { left: 39.5%; top: 35.8%  }
+    0%, 10%   { left: 9.5%;  top: -16.1% }
+    45%, 55%  { left: 32%;   top: 22.9%  }
+    90%, 100% { left: 39.5%; top: 35.8%  }
   }
 
   .brand-copy {
@@ -1401,10 +1368,7 @@
     width: 42px;
     height: var(--sp-6);
     padding: 3px;
-    /* Rayon = rayon du bouton (--radius-xs) + le padding qui l'entoure (3px),
-       pour que le rail reste concentrique au bouton mobile plutôt que codé
-       en dur sur un palier de rayon indépendant. */
-    border-radius: calc(var(--radius-xs) + 3px);
+    border-radius: var(--radius-md);
     background: rgb(26 26 26 / .16);
     border: var(--control-border);
     transition: background var(--speed) var(--ease);
@@ -1447,9 +1411,7 @@
   .switch-sources .switch-ui {
     width: 48px;
     height: 28px;
-    /* Même formule concentrique que .switch-ui : le padding (3px, hérité) et
-       le bouton (--radius-xs) ne changent pas entre les deux tailles. */
-    border-radius: calc(var(--radius-xs) + 3px);
+    border-radius: var(--radius-sm);
   }
   .switch-sources .switch-ui::before {
     width: var(--sp-5);
@@ -2043,9 +2005,8 @@
 
   /* Document de référence : il doit rester lisible imprimé. */
   @media print {
-    body { height: auto; overflow: visible; background: var(--paper-white) }
+    body { background: var(--paper-white) }
     body::before { display: none }
-    .scroll-pane { height: auto; overflow: visible; margin-top: 0 }
     .site-header { position: static; background: none; backdrop-filter: none }
     .skip-link { display: none }
     .paper,
